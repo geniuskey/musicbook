@@ -359,7 +359,7 @@
         <button class="opt">10 펄스</button><button class="opt" data-correct>12 펄스</button><button class="opt">24 펄스</button><button class="opt">2 펄스</button>
       </div><div class="quiz-exp">폴리미터의 재정렬 주기는 lcm(4, 6) = 12 펄스다. 곱 24가 아니라 최소공배수라는 점에 주의.</div></div>
       <div class="quiz-q"><p>16분음표 격자(LHL 가중치)에서 다음 중 당김음 점수가 0인 리듬은?</p><div class="opts">
-        <button class="opt">트레실로 x..x..x.x..x..x. 의 앞 절반을 반복</button><button class="opt">8분 뒷박만 .x.x… 가 아니라 ..x...x...x...x.</button><button class="opt" data-correct>4분음표 x...x...x...x...</button><button class="opt">손 클라베 x..x..x...x.x...</button>
+        <button class="opt">트레실로 x..x..x.x..x..x.</button><button class="opt">8분 뒷박 ..x...x...x...x.</button><button class="opt" data-correct>4분음표 x...x...x...x...</button><button class="opt">손 클라베 x..x..x...x.x...</button>
       </div><div class="quiz-exp">4분음표 리듬은 모든 음이 박 위에 있고, 각 음이 지나가는 쉼 위치는 모두 그 음보다 약하므로 0점이다. 뒷박만 친 리듬은 매 음이 다음 박(더 강한 위치)을 소리 없이 지나가므로 점수가 크다.</div></div>
       <div class="quiz-q"><p>7/8(2+2+3) 같은 박자를 부르는 말로 알맞은 것은?</p><div class="opts">
         <button class="opt">겹박자</button><button class="opt">폴리미터</button><button class="opt" data-correct>가산 박자(아크사크)</button><button class="opt">헤미올라</button>
@@ -884,7 +884,7 @@ function tracker() {
     onStart() { barN = -1; },
     onStop() { nowStep = -1; cv.redraw(); },
   });
-  [["rw-straight", 1], ["rw-trip", 2], ["rw-dot", 3]].forEach(([id, v]) => document.getElementById(id).addEventListener("click", () => { if (auto()) MB.check("rw-auto"); document.getElementById("rw-auto").checked = false; r.set(v); }));
+  [["rw-straight", 1], ["rw-trip", 2], ["rw-dot", 3]].forEach(([id, v]) => document.getElementById(id).addEventListener("click", () => { document.getElementById("rw-auto").checked = false; r.set(v); }));
   const cv = MB.canvas("#rw-cv", (ctx, w, h) => {
     const P = MB.palette(), ph = sw();
     // 타임라인(한 마디)
