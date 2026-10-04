@@ -143,6 +143,8 @@ SVG 안 유틸 클래스: `.t .t-dim .t-mono .t-acc`(텍스트), `.s-line .s-axi
 
 같은 공식을 장마다 다시 쓰지 않는다.
 
+주의: Web Audio `BiquadFilterNode`의 lowpass/highpass `Q`는 선형 Q가 아니라 **dB**(공진 피크 높이)다. 선형 Q를 쓰려면 `20·log10(Q)`로 바꿔 넣는다(bandpass/peaking/notch의 Q는 선형).
+
 ## 검사
 ```bash
 python3 tools/seo.py      # 메타·sitemap 갱신

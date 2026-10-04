@@ -587,6 +587,7 @@ function psyTone(f, amp, o = {}) {
   bA.addEventListener("click", () => answer(true));
   bB.addEventListener("click", () => answer(false));
   const cv = MB.canvas("#cv-psy-jnd", (ctx, w, h) => {
+    if (!st) return;
     const P = MB.palette(), fr = mode() === "freq";
     const y0 = fr ? 0.2 : 0.05, y1 = fr ? 200 : 12, n = Math.max(20, st.track.length + 2);
     const ch = MB.chart(ctx, { x: 46, y: 12, w: w - 58, h: h - 50 }, { x: [0, n], y: [y0, y1], logY: true, yTicks: fr ? [0.5, 1, 2, 5, 10, 20, 50, 100] : [0.1, 0.2, 0.5, 1, 2, 5, 10], xLabel: "시행", yLabel: fr ? "차이 (¢)" : "차이 (dB)", series: [{ data: st.track.map((p, i) => [i + 1, p.d]), color: P.faint, width: 1.2 }],
