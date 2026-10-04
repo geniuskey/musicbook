@@ -6,6 +6,18 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <title>확장 화성과 리하모니제이션 · MusicBook</title>
 <meta name="description" content="세컨더리 도미넌트, 차용 화음, 나폴리·증6화음, 트라이톤 대리, 감7화음의 대칭과 전조, 콜트레인 체인지의 군론, 음수 화성, 네오리만 P·L·R 변환과 토네츠, 선율 재화성을 듣고 조작한다.">
+<link rel="canonical" href="https://musicbook.euiyun.com/chapters/reharm.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MusicBook">
+<meta property="og:title" content="확장 화성과 리하모니제이션 · MusicBook">
+<meta property="og:description" content="세컨더리 도미넌트, 차용 화음, 나폴리·증6화음, 트라이톤 대리, 감7화음의 대칭과 전조, 콜트레인 체인지의 군론, 음수 화성, 네오리만 P·L·R 변환과 토네츠, 선율 재화성을 듣고 조작한다.">
+<meta property="og:url" content="https://musicbook.euiyun.com/chapters/reharm.html">
+<meta property="og:image" content="https://musicbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"확장 화성과 리하모니제이션","name":"확장 화성과 리하모니제이션 · MusicBook","url":"https://musicbook.euiyun.com/chapters/reharm.html","mainEntityOfPage":"https://musicbook.euiyun.com/chapters/reharm.html","inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"interactive textbook chapter","position":10,"image":"https://musicbook.euiyun.com/og.png","dateModified":"2026-10-04","isPartOf":{"@type":"Book","@id":"https://musicbook.euiyun.com/#book","name":"MusicBook — 인터랙티브 음악 교과서","url":"https://musicbook.euiyun.com/"},"publisher":{"@type":"Organization","name":"MusicBook","url":"https://musicbook.euiyun.com/"},"description":"세컨더리 도미넌트, 차용 화음, 나폴리·증6화음, 트라이톤 대리, 감7화음의 대칭과 전조, 콜트레인 체인지의 군론, 음수 화성, 네오리만 P·L·R 변환과 토네츠, 선율 재화성을 듣고 조작한다."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MusicBook","item":"https://musicbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"10 확장 화성과 리하모니제이션","item":"https://musicbook.euiyun.com/chapters/reharm.html"}]}]}</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -26,6 +38,7 @@
   .neg-row h4 { margin: 0; padding: 8px 12px 0; font-size: 13px; color: var(--text-dim); background: var(--canvas-bg); }
   @media (max-width: 640px) { .neg-row { grid-template-columns: 1fr; } }
   .mel-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 12px; background: var(--canvas-bg); }
+  @media (max-width: 520px) { .mel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .mel-cell { border: 1px solid var(--border); border-radius: 8px; padding: 4px 6px 6px; background: var(--bg-elev); min-width: 0; }
   .mel-cell.now { border-color: var(--accent); background: var(--accent-soft); }
   .mel-cell .h { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-faint); font-family: var(--mono); }
@@ -261,7 +274,7 @@
         <div class="stat"><span class="k">화음 대응</span><span class="v" id="ng-map">—</span></div>
         <div class="stat"><span class="k">현재</span><span class="v" id="ng-now">—</span></div>
       </div>
-      <div class="sim-note">위: 5도권 위에서 원래 화음(보라)과 반사된 화음(청록), 점선은 축입니다. 음높이도 축(C 조라면 E4와 E♭4 사이)을 기준으로 실제로 반사했으므로 윗성부의 위아래가 뒤집힙니다. 베이스는 반사된 화음의 '실제 최저음'을 두 옥타브 내려 씁니다 — 이름(Fm6인지 Dm7♭5인지)은 이 선택에 따라 달라집니다. 해볼 것: I–IV–V7–I이 C–Fm–(Fm6)–Cm처럼 '플라갈 마이너' 진행이 되는 것을 들어 보세요.</div>
+      <div class="sim-note">위: 5도권 위에서 원래 화음(보라)과 반사된 화음(청록), 점선은 축입니다. 음높이도 축(C 조라면 E4와 E♭4 사이)을 기준으로 실제로 반사했으므로 윗성부의 위아래가 뒤집힙니다. 베이스는 반사된 음들 가운데 화음 인식 점수가 가장 높은 근음을 고릅니다 — 같은 집합 {F, A♭, C, D}도 F를 베이스로 두면 Fm6, D를 두면 Dm7♭5라는 이름이 됩니다. 해볼 것: I–IV–V7–I이 C–Fm–(Fm6)–Cm처럼 '플라갈 마이너' 진행이 되는 것을 들어 보세요.</div>
     </div>
   </section>
 
@@ -371,7 +384,671 @@
   </section>
 </main>
 <script>
-/* PAGE_SCRIPT */
+/* ================================================================ 공통 헬퍼 (이 장 전용) */
+const H10 = (function () {
+  const MAJ = [0, 2, 4, 5, 7, 9, 11];
+  const ROMAJ = { 0: "I", 2: "ii", 4: "iii", 5: "IV", 7: "V", 9: "vi", 11: "vii°" };
+  const font = () => getComputedStyle(document.body).getPropertyValue("--font");
+  const pcsOf = (r, q) => MB.CHORDS[q].iv.map((i) => MB.mod(r + i, 12));
+  const inKey = (pc, key) => MAJ.includes(MB.mod(pc - key, 12));
+  function fillKeys(sel, val) { sel.innerHTML = [...Array(12)].map((_, k) => `<option value="${k}">${MB.pcName(k, MB.prefersFlats(k))}</option>`).join(""); sel.value = String(val); }
+  function rootPos(rpc, q, lo = 53) { let r = 48 + MB.mod(rpc, 12); while (r < lo) r += 12; const n = MB.chord(r, q); if (n.length === 3) n.push(r + 12); return n.slice(0, 4); }
+  function lead(list, range = [50, 78], lo = 53) { let prev = null; return list.map((c) => { const v = !prev ? rootPos(c.r, c.q, lo) : MB.voiceLead(prev, pcsOf(c.r, c.q), range); prev = v; return v; }); }
+  function seqPlay() {
+    let timers = [];
+    const api = {
+      run(events) { api.cancel(); const t0 = MB.now() + 0.06; events.forEach((e) => { if (e.play) e.play(t0 + e.at); if (e.ui) timers.push(setTimeout(e.ui, (e.at + 0.06) * 1000)); }); },
+      cancel() { timers.forEach(clearTimeout); timers = []; },
+    };
+    return api;
+  }
+  const sh = (k) => (k > 6 ? k - 12 : k);
+  return { MAJ, ROMAJ, font, pcsOf, inKey, fillKeys, rootPos, lead, seqPlay, sh };
+})();
+
+/* ---------------------------------------------------------------- 그림 10-1: 일곱 선법 */
+(function () {
+  const g = document.getElementById("rh-fig-modes");
+  const MODES = [["리디안", "lydian", "II (D)"], ["이오니안(장조)", "major", "—"], ["믹솔리디안", "mixolydian", "♭VII (B♭)"], ["도리안", "dorian", "IV (F), ii"], ["에올리안(단조)", "minor", "iv, ♭VI, ♭VII"], ["프리지안", "phrygian", "♭II (D♭)"], ["로크리안", "locrian", "♭V (G♭)"]];
+  const ion = MB.SCALES.major.steps, DEG = ["1", "2", "3", "4", "5", "6", "7"];
+  let s = `<text x="160" y="16" class="t-dim" style="font-size:11px">음도 (으뜸음 C)</text><text x="620" y="16" class="t-dim" style="font-size:11px">빌려 오는 대표 화음</text>`;
+  MODES.forEach(([nm, key, ch], r) => {
+    const y = 26 + r * 38, st = MB.SCALES[key].steps;
+    s += `<text x="10" y="${y + 24}" class="t" style="font-size:13px;font-weight:600">${nm}</text>`;
+    st.forEach((p, i) => {
+      const x = 160 + i * 64, d = p - ion[i], diff = d !== 0;
+      const nmN = MB.pcName(p, d < 0);
+      s += `<rect x="${x}" y="${y}" width="58" height="32" rx="6" class="${diff ? "f-acc2-soft" : "f-surface"}" style="stroke:var(${diff ? "--accent-2" : "--border"})"/>`;
+      s += `<text x="${x + 22}" y="${y + 21}" text-anchor="middle" class="t" style="font-size:14px;font-weight:700">${nmN}</text>`;
+      s += `<text x="${x + 47}" y="${y + 21}" text-anchor="middle" class="t-dim" style="font-size:10px">${(d < 0 ? "♭" : d > 0 ? "♯" : "") + DEG[i]}</text>`;
+    });
+    s += `<text x="620" y="${y + 21}" class="t-acc" style="font-size:12.5px">${ch}</text>`;
+  });
+  g.innerHTML = s;
+})();
+
+/* ---------------------------------------------------------------- 그림 10-2: 부분군 잉여류 */
+(function () {
+  const g = document.getElementById("rh-fig-cycles");
+  const cols = ["var(--accent)", "var(--accent-2)", "var(--warn)", "var(--ok)"];
+  let s = "";
+  const circle = (cx, cy, r, step, title) => {
+    let o = `<circle cx="${cx}" cy="${cy}" r="${r}" class="s-axis" style="fill:none"/>`;
+    for (let c = 0; c < step; c++) {
+      const pts = []; for (let x = c; x < 12; x += step) pts.push(MB.circlePos(x, cx, cy, r));
+      o += `<polygon points="${pts.map((p) => p.join(",")).join(" ")}" style="fill:none;stroke:${cols[c]};stroke-width:2"/>`;
+    }
+    for (let pc = 0; pc < 12; pc++) {
+      const [x, y] = MB.circlePos(pc, cx, cy, r), c = pc % step;
+      o += `<circle cx="${x}" cy="${y}" r="14" class="f-elev" style="stroke:${cols[c]};stroke-width:2"/><text x="${x}" y="${y + 4}" text-anchor="middle" class="t" style="font-size:11px;font-weight:700">${MB.pcName(pc, [3, 8, 10].includes(pc))}</text>`;
+    }
+    o += `<text x="${cx}" y="292" text-anchor="middle" class="t-dim" style="font-size:12px">${title}</text>`;
+    return o;
+  };
+  s += circle(200, 145, 112, 4, "⟨4⟩의 잉여류 4개: 증3화음 · 콜트레인 조 순환");
+  s += circle(600, 145, 112, 3, "⟨3⟩의 잉여류 3개: 감7화음");
+  g.innerHTML = s;
+})();
+
+/* ---------------------------------------------------------------- 그림 10-3: 음수 화성 축 */
+(function () {
+  const g = document.getElementById("rh-fig-neg");
+  const cx = 230, cy = 150, r = 115, n = 7;
+  const a0 = (MB.mod(7 * n, 12) / 2 / 12) * 2 * Math.PI - Math.PI / 2;
+  let s = `<circle cx="${cx}" cy="${cy}" r="${r}" class="s-axis" style="fill:none"/>`;
+  s += `<line x1="${cx - Math.cos(a0) * (r + 30)}" y1="${cy - Math.sin(a0) * (r + 30)}" x2="${cx + Math.cos(a0) * (r + 30)}" y2="${cy + Math.sin(a0) * (r + 30)}" style="stroke:var(--bad);stroke-width:1.5;stroke-dasharray:6 5"/>`;
+  for (let x = 0; x < 12; x++) { const y = MB.mod(n - x, 12); if (x < y) { const [x1, y1] = MB.circlePos(x, cx, cy, r, "fifths"), [x2, y2] = MB.circlePos(y, cx, cy, r, "fifths"); s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" style="stroke:var(--accent-2);stroke-width:1.2;opacity:.7"/>`; } }
+  for (let pc = 0; pc < 12; pc++) {
+    const [x, y] = MB.circlePos(pc, cx, cy, r, "fifths"), on = [0, 4, 7].includes(pc), neg = [0, 3, 7].includes(pc);
+    s += `<circle cx="${x}" cy="${y}" r="15" class="${on ? "f-acc" : neg ? "f-acc2-soft" : "f-elev"}" style="stroke:var(--border)"/><text x="${x}" y="${y + 4}" text-anchor="middle" style="font-size:12px;font-weight:700;fill:${on ? "var(--on-accent)" : "var(--text)"}">${MB.pcName(pc, [1, 3, 8, 10].includes(pc))}</text>`;
+  }
+  const rows = [["C ↔ G", "으뜸음 ↔ 딸림음"], ["E ↔ E♭", "장3도 ↔ 단3도"], ["D ↔ F", ""], ["A ↔ B♭", ""], ["B ↔ A♭", "이끎음 ↔ ♭6"], ["F♯ ↔ C♯", ""]];
+  s += `<text x="440" y="50" class="t" style="font-size:14px;font-weight:700">C 조의 반사 쌍 (x ↦ 7 − x)</text>`;
+  rows.forEach(([a, b], i) => { s += `<text x="440" y="${84 + i * 30}" class="t-mono" style="font-size:14px">${a}</text><text x="560" y="${84 + i * 30}" class="t-dim" style="font-size:12px">${b}</text>`; });
+  s += `<text x="440" y="${84 + 6 * 30 + 6}" class="t-acc" style="font-size:12.5px">C 장3화음 → C 단3화음: E→E♭(청록), C↔G는 서로 맞바뀜</text>`;
+  g.innerHTML = s;
+})();
+
+/* ---------------------------------------------------------------- 1. 세컨더리 도미넌트 */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const keySel = $("sd-key"); H10.fillKeys(keySel, 0);
+  const key = () => +keySel.value;
+  let base = [], ins = new Set(), out = [], voic = [], cur = -1, curBase = -1;
+  const type = MB.seg("sd-type", () => refresh());
+  const bpm = MB.range("sd-bpm", (v) => v + " BPM");
+  const kb = MB.keyboard("#sd-kb", { lo: 36, hi: 84 });
+  const sp = H10.seqPlay();
+  const flat = () => MB.prefersFlats(key());
+  const elig = (t) => t.off !== 0 && (t.q === "maj" || t.q === "min");
+  const rn = (t) => t.lab || H10.ROMAJ[t.off] || "?";
+  const sym = (t) => MB.chordSymbol(MB.mod(key() + t.off, 12), t.q, flat());
+  function parse(v) { return v.split(",").map((s) => { const [o, q] = s.split("."); return { off: +o, q }; }); }
+  function expand() {
+    const o = [];
+    base.forEach((t, i) => {
+      if (ins.has(i) && elig(t)) o.push(type() === "v7" ? { off: MB.mod(t.off + 7, 12), q: "dom7", lab: "V7/" + rn(t), sec: true, bi: i } : { off: MB.mod(t.off - 1, 12), q: "dim7", lab: "vii°7/" + rn(t), sec: true, bi: i });
+      o.push(Object.assign({ bi: i }, t));
+    });
+    return o;
+  }
+  function slotHtml(t, i, extra) { return `<div class="slot filled${t.sec ? " sec" : ""}${extra}" data-i="${i}"><span class="bn">${i + 1}</span><b>${sym(t)}</b><small>${rn(t)}</small></div>`; }
+  function refresh() {
+    out = expand();
+    voic = H10.lead(out.map((t) => ({ r: key() + t.off, q: t.q })));
+    $("sd-base").innerHTML = base.map((t, i) => slotHtml(t, i, (ins.has(i) && elig(t) ? " sel" : "") + (i === curBase ? " now" : "")).replace("</small>", elig(t) ? (ins.has(i) ? " +V/x" : "") + "</small>" : "</small>")).join("");
+    $("sd-out").innerHTML = out.map((t, i) => slotHtml(t, i, i === cur ? " now" : "")).join("");
+    const svg = MB.staff("#sd-staff", out.map((t, i) => ({ notes: [36 + MB.mod(key() + t.off, 12)].concat(voic[i]), label: sym(t), sub: rn(t), flat: flat() })), { highlight: cur });
+    if (svg) svg.style.minWidth = out.length * 58 + 90 + "px";
+    const secs = out.filter((t) => t.sec);
+    MB.stat("sd-ins", secs.length ? secs.map((t) => `${sym(t)} <small>${t.lab}</small>`).join(", ") : "없음");
+    const chrom = new Map();
+    secs.forEach((t) => H10.pcsOf(key() + t.off, t.q).forEach((pc) => { if (!H10.inKey(pc, key())) chrom.set(pc, MB.mod(pc + 1, 12)); }));
+    MB.stat("sd-chrom", chrom.size ? [...chrom].map(([pc, to]) => `${MB.pcName(pc, false)}<small>→${MB.pcName(to, flat())}</small>`).join(" ") : "—");
+    showNow();
+  }
+  function showNow() {
+    const i = cur >= 0 ? cur : -1;
+    MB.stat("sd-now", i >= 0 ? `${sym(out[i])} <small>${rn(out[i])}</small>` : "—");
+  }
+  function mark(v) { kb.clear("mark"); kb.clear("alt"); if (!v) return; kb.mark(v.filter((m) => H10.inKey(m, key())), "mark"); kb.mark(v.filter((m) => !H10.inKey(m, key())), "alt"); }
+  $("sd-base").addEventListener("click", (e) => {
+    const s = e.target.closest(".slot"); if (!s) return; const i = +s.dataset.i;
+    if (!elig(base[i])) { MB.playChord(H10.rootPos(key() + base[i].off, base[i].q), { dur: 1, vel: 0.5 }); return; }
+    ins.has(i) ? ins.delete(i) : ins.add(i); refresh();
+    const j = out.findIndex((t) => t.bi === i);
+    if (j >= 0) { const evs = []; const d = 0.7; for (let k = j; k < Math.min(out.length, j + 2); k++) { const kk = k; evs.push({ at: (k - j) * d, play: (w) => MB.playChord(voic[kk], { when: w, dur: d * 0.95, vel: 0.5 }), ui: () => mark(voic[kk]) }); } sp.run(evs); }
+  });
+  function playList(list, vs, outMode) {
+    const d = (60 / bpm()) * 2, ev = [];
+    list.forEach((t, i) => ev.push({
+      at: i * d,
+      play: (w) => { const last = i === list.length - 1; MB.playChord(vs[i], { when: w, dur: last ? d * 1.8 : d * 0.95, vel: 0.48 }); MB.play(36 + MB.mod(key() + t.off, 12), { when: w, dur: last ? d * 1.8 : d * 0.95, inst: "bass", vel: 0.7 }); },
+      ui: () => { if (outMode) { cur = i; curBase = -1; } else { curBase = i; cur = -1; } refresh(); mark(vs[i]); },
+    }));
+    ev.push({ at: list.length * d + d * 0.8, ui: () => { cur = curBase = -1; refresh(); mark(null); } });
+    sp.run(ev);
+  }
+  $("sd-play").addEventListener("click", () => playList(out, voic, true));
+  $("sd-orig").addEventListener("click", () => playList(base, H10.lead(base.map((t) => ({ r: key() + t.off, q: t.q }))), false));
+  $("sd-all").addEventListener("click", () => { base.forEach((t, i) => elig(t) && ins.add(i)); refresh(); });
+  $("sd-none").addEventListener("click", () => { ins.clear(); refresh(); });
+  $("sd-preset").addEventListener("change", (e) => { base = parse(e.target.value); ins.clear(); refresh(); });
+  keySel.addEventListener("change", refresh);
+  base = parse($("sd-preset").value); ins.add(3); refresh();
+})();
+
+/* ---------------------------------------------------------------- 2. 모달 인터체인지 */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const keySel = $("bw-key"); H10.fillKeys(keySel, 0);
+  const key = () => +keySel.value;
+  const PADS = [
+    [0, "maj", "I"], [2, "min", "ii"], [4, "min", "iii"], [5, "maj", "IV"], [7, "maj", "V"], [9, "min", "vi"], [11, "dim", "vii°"], [7, "dom7", "V7"],
+    [0, "min", "i"], [2, "dim", "ii°"], [3, "maj", "♭III"], [5, "min", "iv"], [7, "min", "v"], [8, "maj", "♭VI"], [10, "maj", "♭VII"], [1, "maj", "♭II"], [2, "maj", "II"],
+  ].map(([off, q, rn]) => ({ off, q, rn, bor: !H10.pcsOf(off, q).every((pc) => H10.MAJ.includes(pc)) }));
+  const MODES = [["리디안", "lydian"], ["이오니안", "major"], ["믹솔리디안", "mixolydian"], ["도리안", "dorian"], ["에올리안", "minor"], ["프리지안", "phrygian"], ["로크리안", "locrian"]];
+  let prog = Array(8).fill(null), sel = 0, curBar = -1;
+  const kb = MB.keyboard("#bw-kb", { lo: 36, hi: 84 });
+  const flatOf = (t) => t.rn.includes("♭") || MB.prefersFlats(key());
+  const sym = (t) => MB.chordSymbol(MB.mod(key() + t.off, 12), t.q, flatOf(t));
+  let voic = [];
+  function renderPads() { $("bw-pads").innerHTML = PADS.map((t, i) => `<button class="pad${t.bor ? " bor" : ""}" data-i="${i}"><b>${sym(t)}</b><small>${t.rn}${t.bor ? " · 차용" : ""}</small></button>`).join(""); }
+  function src(t) { const p = H10.pcsOf(t.off, t.q); return MODES.filter(([, k]) => p.every((pc) => MB.SCALES[k].steps.includes(pc))).map(([n]) => n); }
+  function refresh() {
+    let prev = null;
+    voic = prog.map((t) => { if (!t) return null; const v = !prev ? H10.rootPos(key() + t.off, t.q) : MB.voiceLead(prev, H10.pcsOf(key() + t.off, t.q), [50, 78]); prev = v; return v; });
+    renderPads();
+    $("bw-slots").innerHTML = prog.map((t, i) => `<div class="slot${t ? " filled" : ""}${t && t.bor ? " bor" : ""}${i === sel ? " sel" : ""}${i === curBar ? " now" : ""}" data-i="${i}"><span class="bn">${i + 1}</span>${t ? `<b>${sym(t)}</b><small>${t.rn}</small>` : "<small>비어 있음</small>"}</div>`).join("");
+    info(curBar >= 0 ? curBar : sel);
+  }
+  function info(i) {
+    const t = prog[i];
+    if (!t) { MB.stat("bw-now", "—"); MB.stat("bw-notes", "—"); MB.stat("bw-src", "—"); return; }
+    MB.stat("bw-now", `${sym(t)} <small>${t.rn}</small>`);
+    const b = H10.pcsOf(t.off, t.q).filter((pc) => !H10.MAJ.includes(pc));
+    MB.stat("bw-notes", b.length ? b.map((pc) => MB.pcName(key() + pc, true) + `<small>(${["", "♭2", "", "♭3", "", "", "♯4", "", "♭6", "", "♭7", ""][pc]})</small>`).join(" ") : "없음 (다이아토닉)");
+    const s = src(t); MB.stat("bw-src", s.length ? s.join(", ") : "<small>일곱 선법 밖 (화성단음계 등)</small>");
+  }
+  function mark(t, v) { kb.clear("mark"); kb.clear("alt"); if (!t || !v) return; v.forEach((m) => kb.mark(m, H10.inKey(m, key()) ? "mark" : "alt")); }
+  $("bw-pads").addEventListener("click", (e) => {
+    const b = e.target.closest(".pad"); if (!b) return; const t = PADS[+b.dataset.i];
+    const at = sel; prog[sel] = t; if (sel < 7) sel++; refresh();
+    MB.playChord(voic[at], { dur: 1.3, vel: 0.5 }); MB.play(36 + MB.mod(key() + t.off, 12), { inst: "bass", dur: 1.3, vel: 0.7 }); mark(t, voic[at]);
+  });
+  $("bw-slots").addEventListener("click", (e) => { const s = e.target.closest(".slot"); if (!s) return; sel = +s.dataset.i; refresh(); if (prog[sel]) { MB.playChord(voic[sel], { dur: 1.2, vel: 0.5 }); mark(prog[sel], voic[sel]); } });
+  $("bw-clr").addEventListener("click", () => { prog = Array(8).fill(null); sel = 0; refresh(); });
+  $("bw-preset").addEventListener("change", (e) => {
+    if (!e.target.value) return;
+    prog = Array(8).fill(null);
+    e.target.value.split(",").forEach((s, i) => { const [o, q] = s.split("."); const t = PADS.find((p) => p.off === +o && p.q === q) || { off: +o, q, rn: q === "maj" && +o === 0 ? "I" : "?", bor: false }; prog[i] = (+o === 0 && q === "maj" && i > 0 && e.target.value.startsWith("0.min")) ? Object.assign({}, t, { rn: "I (피카르디)" }) : t; });
+    sel = 0; e.target.value = ""; refresh();
+  });
+  keySel.addEventListener("change", refresh);
+  const used = () => { let n = 0; prog.forEach((t, i) => { if (t) n = i + 1; }); return Math.max(1, n); };
+  const clk = MB.Clock({
+    bpm: 92, div: 4, length: () => used() * 16,
+    onStep(step, time) {
+      const bar = Math.floor(step / 16), s = step % 16, t = prog[bar], v = voic[bar], beat = 60 / 92;
+      if (!t) return;
+      if (s % 4 === 0) MB.playChord(v, { when: time, dur: beat * 0.9, vel: s === 0 ? 0.5 : 0.38 });
+      if (s === 0 || s === 8) MB.play(36 + MB.mod(key() + t.off, 12), { when: time, dur: beat * 1.9, inst: "bass", vel: 0.72 });
+    },
+    onUI(step) { const bar = Math.floor(step / 16); if (bar !== curBar) { curBar = bar; refresh(); mark(prog[bar], voic[bar]); } },
+  });
+  MB.playButton("bw-play", () => { curBar = -1; clk.start(0); }, () => { clk.stop(); curBar = -1; refresh(); mark(null); });
+  [[0, "maj"], [5, "maj"], [5, "min"], [0, "maj"]].forEach(([o, q], i) => (prog[i] = PADS.find((p) => p.off === o && p.q === q)));
+  refresh();
+})();
+
+/* ---------------------------------------------------------------- 3. 트라이톤 대리 */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const keySel = $("ts-key"); H10.fillKeys(keySel, 0);
+  const key = () => +keySel.value;
+  const ver = MB.seg("ts-ver", () => { cur = -1; update(); });
+  const ext = MB.check("ts-ext", () => update());
+  const bpm = MB.range("ts-bpm", (v) => v + " BPM");
+  const kb = MB.keyboard("#ts-kb", { lo: 28, hi: 79 });
+  const sp = H10.seqPlay();
+  let cv = null, cur = -1, shownVer = "orig";
+  // 위 성부에 쓸 음 (근음 기준 반음): 기본 7화음 / 텐션
+  const UP = { min7: [[0, 3, 7, 10], [3, 7, 10, 14]], dom7: [[0, 4, 7, 10], [4, 10, 14, 21]], maj7: [[0, 4, 7, 11], [4, 7, 11, 14]] };
+  function build(v) {
+    const k = key(), e = ext() ? 1 : 0;
+    const ch = [{ r: k + 2, q: "min7", d: 2 }, { r: v === "orig" ? k + 7 : k + 1, q: "dom7", d: 2 }, { r: k, q: "maj7", d: 4 }];
+    let prev = null, pb = 38;
+    return ch.map((c) => {
+      const pcs = UP[c.q][e].map((i) => MB.mod(c.r + i, 12));
+      const up = !prev ? MB.voiceLead([55, 59, 62, 65], pcs, [52, 74]) : MB.voiceLead(prev, pcs, [52, 74]);
+      prev = up;
+      let b = null; for (let m = 31; m <= 50; m++) if (MB.mod(m, 12) === MB.mod(c.r, 12) && (b == null || Math.abs(m - pb) < Math.abs(b - pb))) b = m; pb = b;
+      return Object.assign({}, c, { up, bass: b, sym: MB.chordSymbol(MB.mod(c.r, 12), ext() ? { min7: "min9", dom7: "dom13", maj7: "maj9" }[c.q] : c.q, c.r === k + 1 || MB.prefersFlats(k)) });
+    });
+  }
+  function draw(ctx, w, h) {
+    const P = MB.palette(), f = H10.font(), A = build(shownVer), B = build(shownVer === "orig" ? "sub" : "orig");
+    const lo = 28, hi = 78, Y = (m) => h - 18 - ((m - lo) / (hi - lo)) * (h - 50);
+    const tot = 8, X = (b) => 40 + ((w - 60) * b) / tot;
+    const starts = [0, 2, 4];
+    for (let m = 36; m <= hi; m += 12) { ctx.strokeStyle = P.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(30, Y(m)); ctx.lineTo(w - 10, Y(m)); ctx.stroke(); ctx.fillStyle = P.faint; ctx.font = `10px ${f}`; ctx.textAlign = "left"; ctx.fillText("C" + (m / 12 - 1), 4, Y(m) + 3); }
+    if (cur >= 0) { ctx.fillStyle = P.accent + "22"; ctx.fillRect(X(starts[cur]), 26, X(starts[cur] + A[cur].d) - X(starts[cur]), h - 40); }
+    const tt = [MB.mod(key() + 11, 12), MB.mod(key() + 5, 12)];
+    A.forEach((c, i) => {
+      const x0 = X(starts[i]) + 4, x1 = X(starts[i] + c.d) - 4;
+      ctx.fillStyle = i === 1 ? (shownVer === "orig" ? P.accent : P.accent2) : P.text; ctx.font = `700 13px ${f}`; ctx.textAlign = "center"; ctx.fillText(c.sym, (x0 + x1) / 2, 18);
+      c.up.forEach((m) => { ctx.fillStyle = i === 1 && tt.includes(MB.mod(m, 12)) ? P.bad : P.dim; ctx.fillRect(x0, Y(m) - 3, x1 - x0, 6); });
+      ctx.fillStyle = shownVer === "orig" ? P.accent : P.accent2; ctx.fillRect(x0, Y(c.bass) - 4, x1 - x0, 8);
+      if (i < 2) {
+        const n = A[i + 1];
+        c.up.forEach((m, j) => { ctx.strokeStyle = P.faint; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x1, Y(m)); ctx.lineTo(X(starts[i + 1]) + 4, Y(n.up[j])); ctx.stroke(); });
+        ctx.strokeStyle = shownVer === "orig" ? P.accent : P.accent2; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x1, Y(c.bass)); ctx.lineTo(X(starts[i + 1]) + 4, Y(n.bass)); ctx.stroke();
+        const ob = B[i], onb = B[i + 1];
+        ctx.strokeStyle = shownVer === "orig" ? P.accent2 : P.accent; ctx.setLineDash([5, 4]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x1, Y(ob.bass)); ctx.lineTo(X(starts[i + 1]) + 4, Y(onb.bass)); ctx.stroke(); ctx.setLineDash([]);
+      }
+      ctx.fillStyle = P.dim; ctx.font = `10px ${f}`; ctx.textAlign = "center"; ctx.fillText(MB.noteName(c.bass, c.r === key() + 1 || MB.prefersFlats(key())), (x0 + x1) / 2, Y(c.bass) + 16);
+    });
+    ctx.textAlign = "left"; ctx.font = `11px ${f}`; ctx.fillStyle = P.dim;
+    ctx.fillText("빨강 = 공유 트라이톤 · 점선 = 다른 버전의 베이스", 40, h - 3);
+  }
+  function update() {
+    shownVer = ver();
+    const A = build(shownVer), k = key();
+    MB.stat("ts-tt", `${MB.pcName(k + 11, false)}–${MB.pcName(k + 5, MB.prefersFlats(k))} <small>(${MB.chordSymbol(MB.mod(k + 7, 12), "dom7", MB.prefersFlats(k))} ∩ ${MB.chordSymbol(MB.mod(k + 1, 12), "dom7", true)})</small>`);
+    const bs = A.map((c) => c.bass);
+    MB.stat("ts-bass", `${A.map((c) => MB.pcName(c.r, c.r === k + 1 || MB.prefersFlats(k))).join("→")} <small>(${MB.signed(bs[1] - bs[0], 0)}, ${MB.signed(bs[2] - bs[1], 0)})</small>`);
+    let c = 0; for (let i = 0; i < 2; i++) A[i].up.forEach((m, j) => (c += Math.abs(A[i + 1].up[j] - m)));
+    MB.stat("ts-vl", `${c} 반음`);
+    kb.clear("root"); kb.clear("mark"); kb.clear("alt");
+    kb.mark(A[1].up.concat([A[1].bass]), "mark");
+    kb.mark(A[1].up.filter((m) => [MB.mod(k + 11, 12), MB.mod(k + 5, 12)].includes(MB.mod(m, 12))), "root");
+    if (cv) cv.redraw();
+  }
+  cv = MB.canvas("#cv-ts", draw, { aspect: 0.6, maxHeight: 400 });
+  function evs(v, t0) {
+    const A = build(v), beat = 60 / bpm(), ev = []; let t = t0;
+    A.forEach((c, i) => {
+      const d = c.d * beat;
+      ev.push({ at: t, play: (w) => { MB.playChord(c.up, { when: w, dur: d * 0.96, inst: "epiano", vel: 0.45 }); MB.play(c.bass, { when: w, dur: d * 0.96, inst: "bass", vel: 0.75 }); }, ui: () => { shownVer = v; cur = i; kb.clear("mark"); kb.clear("root"); kb.mark(c.up.concat([c.bass]), "mark"); if (i === 1) kb.mark(c.up.filter((m) => [MB.mod(key() + 11, 12), MB.mod(key() + 5, 12)].includes(MB.mod(m, 12))), "root"); cv.redraw(); } });
+      t += d;
+    });
+    return { ev, end: t };
+  }
+  $("ts-play").addEventListener("click", () => { const a = evs(ver(), 0); a.ev.push({ at: a.end + 0.3, ui: () => { cur = -1; update(); } }); sp.run(a.ev); });
+  $("ts-ab").addEventListener("click", () => { const a = evs("orig", 0), b = evs("sub", a.end + 0.6); const ev = a.ev.concat(b.ev); ev.push({ at: b.end + 0.3, ui: () => { cur = -1; update(); } }); sp.run(ev); });
+  keySel.addEventListener("change", update);
+  update();
+})();
+
+/* ---------------------------------------------------------------- 4. 감7화음 */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const cls = MB.seg("dm-cls", () => { tonic = -1; render(); });
+  const qs = MB.seg("dm-q", () => render());
+  const kb = MB.keyboard("#dm-kb", { lo: 36, hi: 84 });
+  const sp = H10.seqPlay();
+  let cv = null, tonic = -1, soundingDim = false;
+  const pcs = () => [0, 3, 6, 9].map((i) => MB.mod(+cls() + i, 12));
+  const NAT = [0, 2, 4, 5, 7, 9, 11], LET = "CDEFGAB";
+  const ACC = { "-2": "𝄫", "-1": "♭", 0: "", 1: "♯", 2: "𝄪" };
+  function spell(root) {
+    let best = null;
+    for (const fl of [false, true]) {
+      const nm = MB.pcName(root, fl), L = LET.indexOf(nm[0]);
+      const notes = [0, 3, 6, 9].map((iv, k) => { const l = (L + 2 * k) % 7, a = MB.mod(root + iv - NAT[l] + 6, 12) - 6; return { s: LET[l] + (ACC[a] ?? "?"), a }; });
+      const cost = notes.reduce((s, n) => s + Math.abs(n.a), 0);
+      if (!best || cost < best.cost) best = { cost, txt: notes.map((n) => n.s).join(" ") };
+    }
+    return best.txt;
+  }
+  const tonicName = (t) => MB.chordSymbol(t, qs() === "maj" ? "maj" : "min", MB.prefersFlats(t, qs() === "min"));
+  function voicing(lt) {
+    const bass = 40 + MB.mod(lt - 40, 12);
+    let prev = 56; const up = pcs().map(() => 0);
+    const sorted = pcs().slice().sort((a, b) => MB.mod(a - 57, 12) - MB.mod(b - 57, 12));
+    const u = sorted.map((pc) => { let m = prev + 1; while (MB.mod(m, 12) !== pc) m++; prev = m; return m; });
+    return { bass, up: u };
+  }
+  function resolution(lt) {
+    const t = MB.mod(lt + 1, 12), v = voicing(lt);
+    const tp = MB.chord(0, qs() === "maj" ? "maj" : "min").map((i) => MB.mod(t + i, 12));
+    return { t, dim: [v.bass].concat(v.up), res: [v.bass + 1].concat(MB.voiceLead(v.up, tp, [52, 79])) };
+  }
+  function render() {
+    $("dm-res").innerHTML = pcs().map((lt) => `<button class="btn" data-lt="${lt}">${MB.pcName(lt, false)} → ${tonicName(MB.mod(lt + 1, 12))}</button>`).join("");
+    MB.stat("dm-spell", pcs().map(spell).map((s, i) => (i ? "<small>= </small>" : "") + s).join(" "));
+    MB.stat("dm-now", tonic >= 0 ? `${spell(MB.mod(tonic - 1, 12))} → <b>${tonicName(tonic)}</b>` : "—");
+    if (cv) cv.redraw();
+  }
+  function draw(ctx, w, h) {
+    const P = MB.palette(), f = H10.font(), cx = w / 2, cy = h / 2 + 4, R = Math.min(w, h) * 0.34;
+    ctx.strokeStyle = P.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2 * Math.PI); ctx.stroke();
+    for (let c = 0; c < 3; c++) {
+      const on = c === +cls();
+      ctx.beginPath(); [0, 3, 6, 9].forEach((i, k) => { const [x, y] = MB.circlePos(c + i, cx, cy, R); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.closePath();
+      ctx.strokeStyle = on ? P.accent : P.faint; ctx.lineWidth = on ? 3 : 1; ctx.globalAlpha = on ? 1 : 0.6; ctx.stroke();
+      if (on) { ctx.globalAlpha = soundingDim ? 0.35 : 0.15; ctx.fillStyle = P.accent; ctx.fill(); }
+      ctx.globalAlpha = 1;
+    }
+    pcs().forEach((lt) => {
+      const t = MB.mod(lt + 1, 12), [x1, y1] = MB.circlePos(lt, cx, cy, R), [x2, y2] = MB.circlePos(t, cx, cy, R + 34);
+      ctx.strokeStyle = t === tonic ? P.ok : P.accent2; ctx.lineWidth = t === tonic ? 3 : 1.5; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      ctx.beginPath(); ctx.arc(x2, y2, 15, 0, 2 * Math.PI); ctx.fillStyle = t === tonic ? P.ok : P.elev; ctx.fill(); ctx.strokeStyle = P.accent2; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.fillStyle = t === tonic ? "#fff" : P.text; ctx.font = `700 11px ${f}`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(tonicName(t), x2, y2);
+    });
+    for (let pc = 0; pc < 12; pc++) {
+      const [x, y] = MB.circlePos(pc, cx, cy, R), on = pcs().includes(pc);
+      ctx.beginPath(); ctx.arc(x, y, 12, 0, 2 * Math.PI); ctx.fillStyle = on ? P.accent : P.surface; ctx.fill(); ctx.strokeStyle = P.border; ctx.lineWidth = 1; ctx.stroke();
+      ctx.fillStyle = on ? "#fff" : P.dim; ctx.font = `600 10px ${f}`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(MB.pcName(pc, [3, 8, 10].includes(pc)), x, y);
+    }
+    ctx.textBaseline = "alphabetic";
+  }
+  cv = MB.canvas("#cv-dm", draw, { aspect: 0.8, maxHeight: 420 });
+  function show(notes, cls_) { kb.clear("mark"); kb.clear("alt"); kb.mark(notes, cls_); }
+  function evPair(lt, t0) {
+    const r = resolution(lt);
+    return [
+      { at: t0, play: (w) => MB.playChord(r.dim, { when: w, dur: 1.0, vel: 0.5 }), ui: () => { soundingDim = true; show(r.dim, "mark"); render(); } },
+      { at: t0 + 1.0, play: (w) => MB.playChord(r.res, { when: w, dur: 1.5, vel: 0.5 }), ui: () => { soundingDim = false; tonic = r.t; show(r.res, "alt"); render(); } },
+    ];
+  }
+  $("dm-res").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; sp.run(evPair(+b.dataset.lt, 0)); });
+  $("dm-tour").addEventListener("click", () => {
+    // C → B°7 류 → E♭ → (같은 감7) → G♭ → A → C : 같은 감7화음으로 단3도씩 이동
+    qs.set("maj", false); cls.set("2", false);
+    const ev = [{ at: 0, play: (w) => MB.playChord([48, 55, 60, 64], { when: w, dur: 1.0, vel: 0.5 }), ui: () => { tonic = 0; show([48, 55, 60, 64], "alt"); render(); } }];
+    [2, 5, 8, 11].forEach((lt, i) => ev.push(...evPair(lt, 1.1 + i * 2.6)));
+    sp.run(ev);
+  });
+  render();
+})();
+
+/* ---------------------------------------------------------------- 5. 음수 화성 */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const keySel = $("ng-key"); H10.fillKeys(keySel, 0);
+  const key = () => +keySel.value;
+  const kb = MB.keyboard("#ng-kb", { lo: 36, hi: 84 });
+  const sp = H10.seqPlay();
+  let cv = null, cur = -1, curSide = 0, data = [];
+  function compute() {
+    const k = key(), s = H10.sh(k), toks = $("ng-prog").value.split(",").map((x) => { const [o, q] = x.split("."); return { off: +o, q }; });
+    const ups = H10.lead(toks.map((t) => ({ r: k + t.off, q: t.q })), [55, 77], 55);
+    data = toks.map((t, i) => {
+      const up = ups[i], bass = 36 + MB.mod(k + t.off, 12);
+      const nup = up.map((m) => 127 + 2 * s - m).sort((a, b) => a - b);
+      let det = null, nb = 36 + MB.mod(nup[0], 12);
+      [...new Set(nup.map((m) => MB.mod(m, 12)))].forEach((pc) => { const d = MB.detectChord([36 + pc].concat(nup), true).find((x) => x.root === pc); if (d && (!det || d.score > det.score)) { det = d; nb = 36 + pc; } });
+      return { t, up, bass, nup, nb, sym: MB.chordSymbol(MB.mod(k + t.off, 12), t.q, MB.prefersFlats(k)), nsym: det ? det.sym : "?", pcs: H10.pcsOf(k + t.off, t.q), npcs: [...new Set(nup.map((m) => MB.mod(m, 12)))] };
+    });
+  }
+  function renderStaff() {
+    const fl = MB.prefersFlats(key()) || true;
+    MB.staff("#ng-st1", data.map((d) => ({ notes: [d.bass].concat(d.up), label: d.sym, flat: MB.prefersFlats(key()) })), { highlight: curSide === 0 ? cur : -1 });
+    MB.staff("#ng-st2", data.map((d) => ({ notes: [d.nb].concat(d.nup), label: d.nsym, flat: fl })), { highlight: curSide === 1 ? cur : -1 });
+  }
+  function draw(ctx, w, h) {
+    const P = MB.palette(), f = H10.font(), k = key(), n = MB.mod(2 * k + 7, 12);
+    const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.38;
+    const a0 = (MB.mod(7 * n, 12) / 24) * 2 * Math.PI - Math.PI / 2;
+    ctx.strokeStyle = P.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2 * Math.PI); ctx.stroke();
+    ctx.strokeStyle = P.bad; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(cx - Math.cos(a0) * (R + 22), cy - Math.sin(a0) * (R + 22)); ctx.lineTo(cx + Math.cos(a0) * (R + 22), cy + Math.sin(a0) * (R + 22)); ctx.stroke(); ctx.setLineDash([]);
+    const d = data[cur >= 0 ? cur : 0];
+    const poly = (pcs, col) => {
+      const pts = pcs.slice().sort((a, b) => MB.mod(7 * a, 12) - MB.mod(7 * b, 12)).map((pc) => MB.circlePos(pc, cx, cy, R, "fifths"));
+      ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath();
+      ctx.globalAlpha = 0.18; ctx.fillStyle = col; ctx.fill(); ctx.globalAlpha = 1; ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.stroke();
+    };
+    if (d) { poly(d.pcs, P.accent); poly(d.npcs, P.accent2); }
+    for (let pc = 0; pc < 12; pc++) {
+      const [x, y] = MB.circlePos(pc, cx, cy, R, "fifths"), a = d && d.pcs.includes(pc), b = d && d.npcs.includes(pc);
+      ctx.beginPath(); ctx.arc(x, y, 13, 0, 2 * Math.PI); ctx.fillStyle = a && b ? P.ok : a ? P.accent : b ? P.accent2 : P.surface; ctx.fill(); ctx.strokeStyle = P.border; ctx.lineWidth = 1; ctx.stroke();
+      ctx.fillStyle = a || b ? "#fff" : P.dim; ctx.font = `600 11px ${f}`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(MB.pcName(pc, MB.prefersFlats(k) || [3, 8, 10].includes(MB.mod(pc - k, 12))), x, y);
+    }
+    ctx.textBaseline = "alphabetic"; ctx.font = `700 13px ${f}`; ctx.textAlign = "left";
+    if (d) { ctx.fillStyle = P.accent; ctx.fillText(d.sym, 10, 20); ctx.fillStyle = P.accent2; ctx.fillText("→ " + d.nsym, 10, 38); }
+  }
+  function update() {
+    compute(); renderStaff();
+    const k = key(), n = MB.mod(2 * k + 7, 12), fl = MB.prefersFlats(k);
+    const pairs = []; for (let x = 0; x < 12; x++) { const y = MB.mod(n - x, 12); if (MB.mod(x - k, 12) < MB.mod(y - k, 12) || x === y) pairs.push(`${MB.pcName(x, fl)}↔${MB.pcName(y, true)}`); }
+    MB.stat("ng-rule", `x ↦ ${n} − x <small>${pairs.slice(0, 3).join(" · ")} …</small>`);
+    MB.stat("ng-map", data.map((d) => `${d.sym}→${d.nsym}`).join(", "));
+    MB.stat("ng-now", cur >= 0 ? (curSide ? `음수: ${data[cur].nsym}` : `원래: ${data[cur].sym}`) : "—");
+    if (cv) cv.redraw();
+  }
+  cv = MB.canvas("#cv-ng", draw, { aspect: 0.55, maxHeight: 300 });
+  const d1 = 1.1;
+  const ev1 = (i, side, at) => ({
+    at,
+    play: (w) => { const d = data[i]; MB.playChord(side ? d.nup : d.up, { when: w, dur: d1 * 0.95, vel: 0.48 }); MB.play(side ? d.nb : d.bass, { when: w, dur: d1 * 0.95, inst: "bass", vel: 0.7 }); },
+    ui: () => { cur = i; curSide = side; const d = data[i]; kb.clear("mark"); kb.clear("alt"); kb.mark(side ? d.nup.concat([d.nb]) : d.up.concat([d.bass]), side ? "alt" : "mark"); update(); },
+  });
+  const fin = (at) => ({ at, ui: () => { cur = -1; kb.clear("mark"); kb.clear("alt"); update(); } });
+  $("ng-a").addEventListener("click", () => { compute(); sp.run(data.map((_, i) => ev1(i, 0, i * d1)).concat([fin(data.length * d1 + 0.6)])); });
+  $("ng-b").addEventListener("click", () => { compute(); sp.run(data.map((_, i) => ev1(i, 1, i * d1)).concat([fin(data.length * d1 + 0.6)])); });
+  $("ng-ab").addEventListener("click", () => { compute(); const ev = []; data.forEach((_, i) => { ev.push(ev1(i, 0, i * 2 * d1)); ev.push(ev1(i, 1, (i * 2 + 1) * d1)); }); ev.push(fin(data.length * 2 * d1 + 0.6)); sp.run(ev); });
+  keySel.addEventListener("change", update); $("ng-prog").addEventListener("change", update);
+  update();
+})();
+
+/* ---------------------------------------------------------------- 6. 토네츠 */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const pit = (i, j) => MB.mod(7 * i + 4 * j, 12);
+  const triad = (s) => (s.up ? { root: pit(s.i, s.j), q: "maj" } : { root: pit(s.i, s.j + 1), q: "min" });
+  const verts = (s) => (s.up ? [[s.i, s.j], [s.i + 1, s.j], [s.i, s.j + 1]] : [[s.i + 1, s.j], [s.i, s.j + 1], [s.i + 1, s.j + 1]]);
+  const cent = (s) => (s.up ? [s.i + 1 / 3, s.j + 1 / 3] : [s.i + 2 / 3, s.j + 2 / 3]);
+  const T = {
+    P: (s) => (s.up ? { up: false, i: s.i, j: s.j - 1 } : { up: true, i: s.i, j: s.j + 1 }),
+    L: (s) => (s.up ? { up: false, i: s.i, j: s.j } : { up: true, i: s.i, j: s.j }),
+    R: (s) => (s.up ? { up: false, i: s.i - 1, j: s.j } : { up: true, i: s.i + 1, j: s.j }),
+  };
+  const name = (s) => { const t = triad(s); return MB.chordSymbol(t.root, t.q, [1, 3, 8, 10].includes(t.root) || (t.q === "min" && [5, 10, 0, 7].includes(t.root) && false)); };
+  const pcs = (s) => { const t = triad(s); return H10.pcsOf(t.root, t.q); };
+  const instSel = $("tz-inst");
+  const kb = MB.keyboard("#tz-kb", { lo: 48, hi: 84 });
+  const sp = H10.seqPlay();
+  let state = { up: true, i: 0, j: 0 }, path = [state], voice = [60, 64, 67], last = "—", cv = null;
+  const same = (a, b) => a.up === b.up && a.i === b.i && a.j === b.j;
+  function vlTo(prev, s) { return MB.voiceLead(prev, pcs(s), [52, 79]); }
+  function describe(prev, next, op) {
+    const a = prev.map((m) => MB.mod(m, 12)), b = next.map((m) => MB.mod(m, 12));
+    const gone = a.filter((x) => !b.includes(x)), come = b.filter((x) => !a.includes(x));
+    const mv = prev.map((m, i) => next[i] - m).filter((d) => d);
+    return `${op} <small>${gone.map((x) => MB.pcName(x, true)).join(",")}→${come.map((x) => MB.pcName(x, true)).join(",")} (${mv.map((d) => MB.signed(d, 0)).join(", ") || "0"})</small>`;
+  }
+  function moveTo(s, op, when) {
+    const prev = voice, nv = vlTo(voice, s);
+    MB.playChord(nv, { when, dur: 1.1, inst: instSel.value, vel: 0.5 });
+    return { prev, nv, desc: describe(prev, nv, op) };
+  }
+  function apply(s, r) { state = s; voice = r.nv; last = r.desc; path.push(s); if (path.length > 40) path.shift(); kb.set(voice); readout(); cv.redraw(); }
+  function readout() {
+    MB.stat("tz-cur", `${name(state)} <small>${pcs(state).map((x) => MB.pcName(x, true)).join(" ")}</small>`);
+    MB.stat("tz-last", last);
+    MB.stat("tz-path", `${path.length}개 <small>${path.slice(-6).map(name).join("→")}</small>`);
+  }
+  function draw(ctx, w, h) {
+    const P = MB.palette(), f = H10.font(), dx = MB.clamp(w / 9, 46, 72), dy = dx * 0.866, cx = w / 2, cy = h / 2;
+    const [ci, cj] = cent(state);
+    const S = (I, J) => [cx + (I - ci + (J - cj) / 2) * dx, cy - (J - cj) * dy];
+    const jr = Math.ceil(h / dy / 2) + 1;
+    const tri = (s, fill, alpha) => { const v = verts(s).map(([a, b]) => S(a, b)); ctx.beginPath(); ctx.moveTo(...v[0]); ctx.lineTo(...v[1]); ctx.lineTo(...v[2]); ctx.closePath(); ctx.globalAlpha = alpha; ctx.fillStyle = fill; ctx.fill(); ctx.globalAlpha = 1; };
+    const J0 = Math.floor(cj) - jr, J1 = Math.floor(cj) + jr, I0 = Math.floor(ci) - Math.ceil(w / dx) - jr, I1 = Math.floor(ci) + Math.ceil(w / dx) + jr;
+    for (let j = J0; j <= J1; j++) for (let i = I0; i <= I1; i++) {
+      const [x, y] = S(i, j); if (x < -dx * 1.5 || x > w + dx * 1.5) continue;
+      tri({ up: true, i, j }, P.surface, 0.9);
+    }
+    path.forEach((s, k) => tri(s, P.accent2, 0.12 + (0.25 * k) / path.length));
+    tri(state, P.accent, 0.55);
+    ctx.strokeStyle = P.grid; ctx.lineWidth = 1;
+    for (let j = J0; j <= J1; j++) for (let i = I0; i <= I1; i++) {
+      const [x, y] = S(i, j); if (x < -dx * 1.5 || x > w + dx * 1.5) continue;
+      [[1, 0], [0, 1], [-1, 1]].forEach(([a, b]) => { const [x2, y2] = S(i + a, j + b); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x2, y2); ctx.stroke(); });
+    }
+    // 경로
+    ctx.strokeStyle = P.accent; ctx.lineWidth = 2.5; ctx.beginPath();
+    path.forEach((s, k) => { const [a, b] = cent(s), [x, y] = S(a, b); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke();
+    // 삼각형 이름(현재·이웃)
+    ctx.font = `700 12px ${f}`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    [state, T.P(state), T.L(state), T.R(state)].forEach((s, k) => { const [a, b] = cent(s), [x, y] = S(a, b); ctx.fillStyle = k ? P.dim : "#fff"; ctx.fillText((k ? "PLR"[k - 1] + ": " : "") + name(s), x, y); });
+    // 노드
+    const cur = pcs(state);
+    for (let j = J0; j <= J1; j++) for (let i = I0; i <= I1; i++) {
+      const [x, y] = S(i, j); if (x < -20 || x > w + 20 || y < -20 || y > h + 20) continue;
+      const pc = pit(i, j), on = cur.includes(pc) && verts(state).some(([a, b]) => a === i && b === j);
+      ctx.beginPath(); ctx.arc(x, y, 13, 0, 2 * Math.PI); ctx.fillStyle = on ? P.accent : P.elev; ctx.fill(); ctx.strokeStyle = P.border; ctx.lineWidth = 1; ctx.stroke();
+      ctx.fillStyle = on ? "#fff" : P.text; ctx.font = `600 11px ${f}`; ctx.fillText(MB.pcName(pc, [1, 3, 8, 10].includes(pc)), x, y);
+    }
+    ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; ctx.font = `11px ${f}`;
+    const lg = "→ 완전5도   ↗ 장3도   ↖ 단3도", lw = ctx.measureText(lg).width + 12;
+    ctx.fillStyle = P.bg; ctx.globalAlpha = 0.9; ctx.fillRect(4, 4, lw, 20); ctx.globalAlpha = 1; ctx.fillStyle = P.dim; ctx.fillText(lg, 10, 18);
+    draw.S = S; draw.inv = (x, y) => { const J = cj - (y - cy) / dy, I = ci + (x - cx) / dx - (J - cj) / 2; return [I, J]; };
+  }
+  cv = MB.canvas("#cv-tz", draw, { aspect: (w) => (w > 600 ? 0.7 : 0.95), maxHeight: 520 });
+  cv.canvas.addEventListener("pointerdown", (e) => {
+    if (!draw.inv) return;
+    const r = cv.canvas.getBoundingClientRect(), [I, J] = draw.inv(e.clientX - r.left, e.clientY - r.top);
+    const fi = Math.floor(I), fj = Math.floor(J), u = I - fi, v = J - fj;
+    const s = u + v < 1 ? { up: true, i: fi, j: fj } : { up: false, i: fi, j: fj };
+    if (same(s, state)) { MB.playChord(voice, { dur: 1.1, inst: instSel.value, vel: 0.5 }); return; }
+    sp.cancel(); apply(s, moveTo(s, "점프", undefined));
+  });
+  ["P", "L", "R"].forEach((op) => $("tz-" + op).addEventListener("click", () => { sp.cancel(); const s = T[op](state); apply(s, moveTo(s, op, undefined)); }));
+  function cycle(a, b) {
+    const ev = []; let s = state, v = voice, k = 0;
+    do {
+      const op = k % 2 ? b : a, ns = T[op](s), nv = vlTo(v, ns), desc = describe(v, nv, op), at = k * 0.75, vv = nv, sv = ns;
+      ev.push({ at, play: (w) => MB.playChord(vv, { when: w, dur: 0.8, inst: instSel.value, vel: 0.5 }), ui: () => { state = sv; voice = vv; last = desc; path.push(sv); if (path.length > 40) path.shift(); kb.set(vv); readout(); cv.redraw(); } });
+      s = ns; v = nv; k++;
+    } while (!(triad(s).root === triad(state).root && triad(s).q === triad(state).q) && k < 30);
+    sp.run(ev);
+  }
+  $("tz-pl").addEventListener("click", () => cycle("P", "L"));
+  $("tz-pr").addEventListener("click", () => cycle("P", "R"));
+  $("tz-lr").addEventListener("click", () => cycle("L", "R"));
+  $("tz-clr").addEventListener("click", () => { sp.cancel(); path = [state]; readout(); cv.redraw(); });
+  $("tz-play").addEventListener("click", () => {
+    const list = path.slice(); let v = null;
+    const ev = list.map((s, k) => { v = v ? vlTo(v, s) : H10.rootPos(triad(s).root, triad(s).q, 55).slice(0, 3); const vv = v; return { at: k * 0.7, play: (w) => MB.playChord(vv, { when: w, dur: 0.75, inst: instSel.value, vel: 0.5 }), ui: () => { kb.set(vv); MB.stat("tz-cur", `${name(s)} <small>경로 ${k + 1}/${list.length}</small>`); } }; });
+    ev.push({ at: list.length * 0.7 + 0.3, ui: () => { kb.set(voice); readout(); } });
+    sp.run(ev);
+  });
+  kb.set(voice); readout();
+})();
+
+/* ---------------------------------------------------------------- 7. 선율 재화성 */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  // 환희의 송가(베토벤, 1824, 공유 저작물) 첫 8마디, C 장조. [MIDI, 박]
+  const MEL = [
+    [[64, 1], [64, 1], [65, 1], [67, 1]], [[67, 1], [65, 1], [64, 1], [62, 1]], [[60, 1], [60, 1], [62, 1], [64, 1]], [[64, 1.5], [62, 0.5], [62, 2]],
+    [[64, 1], [64, 1], [65, 1], [67, 1]], [[67, 1], [65, 1], [64, 1], [62, 1]], [[60, 1], [60, 1], [62, 1], [64, 1]], [[62, 1.5], [60, 0.5], [60, 2]],
+  ];
+  const notes = []; MEL.forEach((bar, b) => { let t = 0; bar.forEach(([m, d]) => { notes.push({ m, t: b * 4 + t, d }); t += d; }); });
+  const V = [
+    ["C", 0, "maj", "I", "dia"], ["Dm", 2, "min", "ii", "dia"], ["Em", 4, "min", "iii", "dia"], ["F", 5, "maj", "IV", "dia"], ["G", 7, "maj", "V", "dia"], ["Am", 9, "min", "vi", "dia"], ["Bdim", 11, "dim", "vii°", "dia"],
+    ["G7", 7, "dom7", "V7", "dia7"], ["Cmaj7", 0, "maj7", "Imaj7", "dia7"], ["Dm7", 2, "min7", "ii7", "dia7"], ["Em7", 4, "min7", "iii7", "dia7"], ["Fmaj7", 5, "maj7", "IVmaj7", "dia7"], ["Am7", 9, "min7", "vi7", "dia7"],
+    ["C7", 0, "dom7", "V7/IV", "sec"], ["D7", 2, "dom7", "V7/V", "sec"], ["E7", 4, "dom7", "V7/vi", "sec"], ["A7", 9, "dom7", "V7/ii", "sec"], ["B7", 11, "dom7", "V7/iii", "sec"],
+    ["Fm", 5, "min", "iv", "bor"], ["A♭", 8, "maj", "♭VI", "bor"], ["B♭", 10, "maj", "♭VII", "bor"], ["E♭", 3, "maj", "♭III", "bor"], ["D♭", 1, "maj", "♭II", "bor"],
+  ].map(([n, r, q, rn, c]) => ({ n, r, q, rn, c, pcs: H10.pcsOf(r, q) }));
+  const halves = [...Array(16)].map((_, h) => notes.filter((x) => x.t >= h * 2 && x.t < h * 2 + 2));
+  const wOf = (x) => { const pos = x.t % 4; return x.d * (pos === 0 ? 2 : pos === 2 ? 1.5 : Number.isInteger(pos) ? 1 : 0.7); };
+  const fit = (c, h) => { let s = 0, t = 0; halves[h].forEach((x) => { const w = wOf(x); t += w; if (c.pcs.includes(MB.mod(x.m, 12))) s += w; }); return t ? s / t : 0; };
+  const FIT = halves.map((_, h) => V.map((c) => fit(c, h)));
+  let choice = [], cur = -1, curT = -1, voic = [], cv = null;
+  const bpm = MB.range("ml-bpm", (v) => v + " BPM");
+  const bassOn = MB.check("ml-bass");
+  const instSel = $("ml-inst");
+  const byName = (n) => V.findIndex((c) => c.n === n);
+  function auto(kind) {
+    if (kind === "basic") {
+      const pool = ["C", "G", "G7"].map(byName);
+      choice = halves.map((_, h) => pool.reduce((a, b) => (FIT[h][b] > FIT[h][a] + 1e-9 ? b : a)));
+    } else if (kind === "best") {
+      const pr = (c) => ({ dia: 0, dia7: 0.01, sec: 0.02, bor: 0.03 }[c.c]);
+      choice = halves.map((_, h) => V.map((c, i) => i).reduce((a, b) => (FIT[h][b] - pr(V[b]) > FIT[h][a] - pr(V[a]) + 1e-9 ? b : a)));
+    } else if (kind === "color") {
+      choice = Array(16).fill(0); choice[15] = byName("C");
+      for (let h = 14; h >= 0; h--) {
+        const nxt = V[choice[h + 1]]; let best = -1, bs = -1;
+        V.forEach((c, i) => {
+          if (FIT[h][i] < 0.6) return;
+          let s = FIT[h][i] + (c.c === "dia" ? 0 : 0.18) + (c.q === "dom7" && MB.mod(c.r - 7, 12) === nxt.r && nxt.q !== "dim" ? 0.3 : 0) - (i === choice[h + 1] ? 0.15 : 0);
+          if (s > bs) { bs = s; best = i; }
+        });
+        choice[h] = best >= 0 ? best : FIT[h].indexOf(Math.max(...FIT[h]));
+      }
+    } else {
+      choice = halves.map((_, h) => { const ok = V.map((c, i) => i).filter((i) => FIT[h][i] >= 0.6); return ok.length ? ok[Math.floor(Math.random() * ok.length)] : FIT[h].indexOf(Math.max(...FIT[h])); });
+    }
+    refresh();
+  }
+  function renderGrid() {
+    $("ml-grid").innerHTML = halves.map((_, h) => {
+      const order = V.map((c, i) => i).filter((i) => FIT[h][i] >= 0.34 || i === choice[h]).sort((a, b) => FIT[h][b] - FIT[h][a]);
+      return `<div class="mel-cell${h === cur ? " now" : ""}"><div class="h"><span>${Math.floor(h / 2) + 1}마디 ${h % 2 ? "3–4박" : "1–2박"}</span><span>${Math.round(FIT[h][choice[h]] * 100)}%</span></div><select data-h="${h}" aria-label="${h + 1}번째 반 마디 화음">${order.map((i) => `<option value="${i}"${i === choice[h] ? " selected" : ""}>${V[i].n} · ${V[i].rn} (${Math.round(FIT[h][i] * 100)}%)</option>`).join("")}</select></div>`;
+    }).join("");
+  }
+  function refresh() {
+    voic = H10.lead(choice.map((i) => ({ r: V[i].r, q: V[i].q })), [43, 60], 48);
+    renderGrid();
+    const avg = choice.reduce((s, c, h) => s + FIT[h][c], 0) / 16;
+    MB.stat("ml-fit", `${Math.round(avg * 100)}%`);
+    const nct = notes.filter((x) => x.t % 2 === 0 && !V[choice[Math.floor(x.t / 2)]].pcs.includes(MB.mod(x.m, 12))).length;
+    MB.stat("ml-nct", `${nct}개 <small>(1·3박 위)</small>`);
+    const ch = choice.filter((i) => V[i].c === "sec" || V[i].c === "bor");
+    MB.stat("ml-chrom", `${ch.length}개 <small>${[...new Set(ch.map((i) => V[i].n))].join(" ")}</small>`);
+    if (cv) cv.redraw();
+  }
+  $("ml-grid").addEventListener("change", (e) => {
+    const s = e.target.closest("select"); if (!s) return; const h = +s.dataset.h; choice[h] = +s.value; refresh();
+    const ns = halves[h].map((x) => x.m);
+    MB.playChord(voic[h], { dur: 1.0, vel: 0.45 }); ns.forEach((m, k) => MB.play(m, { inst: instSel.value, when: MB.now() + 0.02 + k * 0.25, dur: 0.24, vel: 0.5 }));
+  });
+  document.querySelectorAll("[data-auto]").forEach((b) => b.addEventListener("click", () => auto(b.dataset.auto)));
+  function draw(ctx, w, h) {
+    const P = MB.palette(), f = H10.font(), x0 = 10, x1 = w - 10, X = (t) => x0 + ((x1 - x0) * t) / 32;
+    const lo = 58, hi = 69, band = 30, Y = (m) => h - band - 14 - ((m - lo) / (hi - lo)) * (h - band - 34);
+    for (let b = 0; b <= 8; b++) { ctx.strokeStyle = b % 1 === 0 ? P.grid : P.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(b * 4), 6); ctx.lineTo(X(b * 4), h - 4); ctx.stroke(); }
+    if (curT >= 0) { ctx.fillStyle = P.accent + "22"; ctx.fillRect(X(Math.floor(curT / 2) * 2), 6, X(2) - X(0), h - 10); }
+    notes.forEach((x) => {
+      const ok = V[choice[Math.floor(x.t / 2)]].pcs.includes(MB.mod(x.m, 12));
+      ctx.fillStyle = ok ? P.accent : P.warn; ctx.globalAlpha = curT >= 0 && x.t <= curT && curT < x.t + x.d ? 1 : 0.8;
+      ctx.fillRect(X(x.t) + 1, Y(x.m) - 5, X(x.t + x.d) - X(x.t) - 2, 10); ctx.globalAlpha = 1;
+    });
+    ctx.font = `600 11px ${f}`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    choice.forEach((c, k) => {
+      const col = { dia: P.surface, dia7: P.surface, sec: P.bad, bor: P.accent2 }[V[c].c];
+      ctx.fillStyle = col; ctx.globalAlpha = V[c].c.startsWith("dia") ? 1 : 0.25; ctx.fillRect(X(k * 2) + 1, h - band - 2, X(2) - X(0) - 2, band - 4); ctx.globalAlpha = 1;
+      ctx.fillStyle = P.text; ctx.fillText(V[c].n, X(k * 2 + 1), h - band / 2 - 4);
+    });
+    ctx.textBaseline = "alphabetic"; ctx.textAlign = "left"; ctx.font = `10px ${f}`; ctx.fillStyle = P.faint;
+    ctx.fillText("보라 = 화음 구성음, 주황 = 비화성음", 14, 18);
+  }
+  auto("basic");
+  cv = MB.canvas("#cv-ml", draw, { aspect: 0.38, minHeight: 180, maxHeight: 280 });
+  const clk = MB.Clock({
+    bpm: () => bpm(), div: 2, length: 64,
+    onStep(step, time) {
+      const t = step / 2, beat = 60 / bpm();
+      notes.forEach((x) => { if (Math.abs(x.t - t) < 1e-6) MB.play(x.m + 12, { when: time, dur: x.d * beat * 0.9, inst: instSel.value, vel: 0.55 }); });
+      if (step % 4 === 0) {
+        const h = step / 4, c = V[choice[h]];
+        MB.playChord(voic[h], { when: time, dur: beat * 1.9, vel: 0.36 });
+        if (bassOn()) MB.play(36 + MB.mod(c.r, 12), { when: time, dur: beat * 1.9, inst: "bass", vel: 0.65 });
+      }
+    },
+    onUI(step) {
+      curT = step / 2; const h = Math.floor(step / 4);
+      if (h !== cur) { cur = h; document.querySelectorAll("#ml-grid .mel-cell").forEach((el, i) => el.classList.toggle("now", i === h)); }
+      cv.redraw();
+    },
+  });
+  MB.playButton("ml-play", () => clk.start(0), () => { clk.stop(); cur = -1; curT = -1; document.querySelectorAll("#ml-grid .mel-cell.now").forEach((el) => el.classList.remove("now")); cv.redraw(); });
+})();
+
 </script>
 </body>
 </html>
