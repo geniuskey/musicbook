@@ -1079,8 +1079,8 @@
    */
   MB.drawSpectrum = function (ctx, box, db, binHz, o = {}) {
     const P = MB.palette();
-    const fmin = o.fmin || 20, fmax = o.fmax || 20000, dmin = o.dbMin != null ? o.dbMin : -100, dmax = o.dbMax != null ? o.dbMax : 0, log = o.log !== false;
-    const X = (f) => box.x + (log ? Math.log(f / fmin) / Math.log(fmax / fmin) : (f - fmin) / (fmax - fmin)) * box.w;
+    const fmin = o.fmin != null ? o.fmin : 20, fmax = o.fmax || 20000, dmin = o.dbMin != null ? o.dbMin : -100, dmax = o.dbMax != null ? o.dbMax : 0, log = o.log !== false;
+    const X = (f) => box.x + (log ? Math.log(f / Math.max(fmin, 1e-3)) / Math.log(fmax / Math.max(fmin, 1e-3)) : (f - fmin) / (fmax - fmin)) * box.w;
     const Y = (d) => box.y + box.h - ((MB.clamp(d, dmin, dmax) - dmin) / (dmax - dmin)) * box.h;
     ctx.save();
     if (o.grid !== false) {
@@ -1088,7 +1088,7 @@
       ctx.font = "10px " + getComputedStyle(document.body).getPropertyValue("--mono");
       ctx.textAlign = "center"; ctx.textBaseline = "top";
       const marks = log ? [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000] : null;
-      (marks || [...Array(6)].map((_, i) => fmin + (i * (fmax - fmin)) / 5)).forEach((f) => { if (f < fmin || f > fmax) return; const x = X(f); ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.h); ctx.stroke(); ctx.fillText(f >= 1000 ? f / 1000 + "k" : String(Math.round(f)), x, box.y + box.h + 3); });
+      (marks || [...Array(6)].map((_, i) => fmin + (i * (fmax - fmin)) / 5)).forEach((f) => { if (f < fmin || f > fmax) return; const x = X(f); ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.h); ctx.stroke(); ctx.fillText(f >= 1000 ? Number((f / 1000).toPrecision(3)) + "k" : String(Math.round(f)), x, box.y + box.h + 3); });
       ctx.textAlign = "right"; ctx.textBaseline = "middle";
       for (let d = Math.ceil(dmin / 20) * 20; d <= dmax; d += 20) { const y = Y(d); ctx.beginPath(); ctx.moveTo(box.x, y); ctx.lineTo(box.x + box.w, y); ctx.stroke(); ctx.fillText(d + "", box.x - 4, y); }
     }
