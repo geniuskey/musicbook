@@ -886,7 +886,7 @@ const STD = (function () {
     const P = MB.palette(), g = STD.live, box = { x: 36, y: 10, w: w - 46, h: h - 30 };
     const fmin = 30, fmax = 16000, X = (f) => box.x + (Math.log(f / fmin) / Math.log(fmax / fmin)) * box.w, dbMin = -110, dbMax = -20, Y = (d) => box.y + box.h - ((MB.clamp(d, dbMin, dbMax) - dbMin) / (dbMax - dbMin)) * box.h;
     if (!g || !STD.main.running) {
-      MB.drawSpectrum(ctx, box, new Float32Array(16).fill(-200), 1000, { fmin, fmax, dbMin, dbMax });
+      MB.drawSpectrum(ctx, box, new Float32Array(16).fill(-200), 1000, { fmin, fmax, dbMin, dbMax, color: "rgba(0,0,0,0)" });
       ctx.fillStyle = P.faint; ctx.font = "13px " + getComputedStyle(document.body).getPropertyValue("--font"); ctx.textAlign = "center"; ctx.fillText("▶ 루프 재생을 누르면 트랙별 스펙트럼이 나타납니다", box.x + box.w / 2, box.y + box.h / 2);
       return;
     }
@@ -900,7 +900,7 @@ const STD = (function () {
       const vals = STD.TR.map((k) => lv[k][j]), mx = Math.max(...vals), cnt = vals.filter((v) => v > mx - 6).length;
       if (mx > -80 && cnt >= 2) { overlap++; if (showMask()) { ctx.fillStyle = P.bad + "26"; ctx.fillRect(X(fc / Math.pow(2, 1 / 6)), box.y, X(fc * Math.pow(2, 1 / 6)) - X(fc / Math.pow(2, 1 / 6)), box.h); } }
     });
-    MB.drawSpectrum(ctx, box, new Float32Array(16).fill(-200), 1000, { fmin, fmax, dbMin, dbMax });
+    MB.drawSpectrum(ctx, box, new Float32Array(16).fill(-200), 1000, { fmin, fmax, dbMin, dbMax, color: "rgba(0,0,0,0)" });
     if (view() === "sum") { g.an.getFloatFrequencyData(fd); MB.drawSpectrum(ctx, box, fd, binHz, { fmin, fmax, dbMin, dbMax, grid: false, color: P.text, fill: P.text + "18", width: 1.4 }); }
     else STD.TR.forEach((k) => MB.drawSpectrum(ctx, box, spec[k], binHz, { fmin, fmax, dbMin, dbMax, grid: false, color: P[COLV[k]], width: 1.8 }));
     // 범례 + 무게중심
