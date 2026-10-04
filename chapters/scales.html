@@ -738,7 +738,7 @@ const MONO = () => getComputedStyle(document.body).getPropertyValue("--mono");
   let geo = null, hot = { which: null, pc: -1 };
   const cv = MB.canvas("#scl-ev-cv", (ctx, w, h) => {
     const P = MB.palette();
-    const r = Math.min(w / 4 - 30, h * 0.24), cy = r + 34;
+    const r = Math.min(w / 4 - 30, h * 0.22), cy = r + 52;
     const cx1 = w / 4, cx2 = (3 * w) / 4;
     geo = { cx2, cy, r };
     const me = meMask(k), mp = MB.maskToPcs(mine), n = mp.length, meN = MB.maskToPcs(meMask(Math.max(1, n)));
@@ -903,7 +903,7 @@ const MONO = () => getComputedStyle(document.body).getPropertyValue("--mono");
     });
   }
   function drawSig(hiIdx) {
-    const sp = 9, W = 560, trebTop = 24, bassTop = trebTop + sp * 10, H = bassTop + sp * 4 + 22;
+    const sp = 9, W = 560, trebTop = 40, bassTop = trebTop + sp * 10, H = bassTop + sp * 4 + 16;
     const yOf = (pos, bass) => (bass ? bassTop + (26 - pos) * (sp / 2) : trebTop + (38 - pos) * (sp / 2));
     let s = `<svg viewBox="0 0 ${W} ${H}" class="mb-staff" role="img" aria-label="조표와 음계">`;
     for (let i = 0; i < 5; i++) s += `<line x1="8" x2="${W - 8}" y1="${trebTop + i * sp}" y2="${trebTop + i * sp}" class="sl"/><line x1="8" x2="${W - 8}" y1="${bassTop + i * sp}" y2="${bassTop + i * sp}" class="sl"/>`;
@@ -920,11 +920,11 @@ const MONO = () => getComputedStyle(document.body).getPropertyValue("--mono");
       const x = xs + dx * (i + 0.5), y = yOf(nt.pos, false);
       for (let ly = trebTop + sp * 5; ly <= y + 0.1; ly += sp) s += `<line x1="${x - sp * 1.2}" x2="${x + sp * 1.2}" y1="${ly}" y2="${ly}" class="sl"/>`;
       s += `<g class="${hiIdx === i ? "hl2" : ""}"><ellipse cx="${x}" cy="${y}" rx="${sp * 0.68}" ry="${sp * 0.48}" transform="rotate(-20 ${x} ${y})" class="nh"/></g>`;
-      s += `<text x="${x}" y="${H - 6}" text-anchor="middle" class="sub">${nt.name}</text>`;
+      s += `<text x="${x}" y="${trebTop - 14}" text-anchor="middle" class="lab">${nt.name}</text>`;
     });
     // 낮은음자리표: 으뜸화음
     const cx = xs + dx * 0.5, triad = [0, 2, 4].map((d) => sc[d]);
-    triad.forEach((nt) => { const y = yOf(nt.pos - 14, true); s += `<ellipse cx="${cx}" cy="${y}" rx="${sp * 0.68}" ry="${sp * 0.48}" transform="rotate(-20 ${cx} ${y})" class="nh" opacity=".55"/>`; });
+    triad.forEach((nt) => { const y = yOf(nt.pos - 7, true); s += `<ellipse cx="${cx}" cy="${y}" rx="${sp * 0.68}" ry="${sp * 0.48}" transform="rotate(-20 ${cx} ${y})" class="nh" opacity=".55"/>`; });
     s += `</svg>`;
     document.getElementById("scl-cf-sig").innerHTML = s;
   }
@@ -1123,16 +1123,16 @@ const MONO = () => getComputedStyle(document.body).getPropertyValue("--mono");
   const order = MB.seg("scl-mk-order", () => update());
   const cv = MB.canvas("#scl-mk-cv", (ctx, w, h) => {
     const P = MB.palette(), wide = w >= 520;
-    const r = Math.min(wide ? h / 2 - 40 : w / 2 - 50, 150), cx = wide ? r + 56 : w / 2, cy = r + 40;
+    const r = Math.min(wide ? h / 2 - 40 : w / 2 - 50, 130), cx = wide ? r + 50 : w / 2, cy = r + 40;
     geo = { cx, cy, r };
     SC.drawClock(ctx, cx, cy, r, mask, { order: order(), root: 0, hot: hot >= 0 ? hot : null });
     // 비트 레지스터
-    const bx = wide ? cx + r + 60 : 14, by = wide ? 40 : cy + r + 44, bw = wide ? w - bx - 14 : w - 28, cell = Math.min(30, bw / 12);
+    const bx = wide ? cx + r + 44 : 14, by = wide ? 40 : cy + r + 44, bw = wide ? w - bx - 14 : w - 28, cell = Math.min(30, bw / 12);
     ctx.font = "12px " + FONT(); ctx.fillStyle = P.dim; ctx.textAlign = "left"; ctx.fillText("비트 11 … 0", bx, by - 6);
     for (let i = 11; i >= 0; i--) {
       const x = bx + (11 - i) * cell, on = (mask >> i) & 1;
       ctx.fillStyle = hot === i ? P.warn : on ? P.accent : P.surface; ctx.fillRect(x + 1, by, cell - 3, cell - 3);
-      ctx.fillStyle = on ? "#fff" : P.faint; ctx.font = "700 12px " + MONO(); ctx.textAlign = "center"; ctx.fillText(on, x + cell / 2 - 1, by + cell / 2 + 3);
+      ctx.fillStyle = on ? "#fff" : P.faint; ctx.font = `700 ${Math.round(Math.min(12, cell * 0.6))}px ` + MONO(); ctx.textAlign = "center"; ctx.fillText(on, x + cell / 2 - 1, by + cell / 2 + 3);
       ctx.fillStyle = P.dim; ctx.font = "9px " + MONO(); ctx.fillText(MB.SHARP_NAMES[i], x + cell / 2 - 1, by + cell + 9);
     }
     ctx.textAlign = "left"; ctx.fillStyle = P.text; ctx.font = "13px " + MONO();
@@ -1140,7 +1140,7 @@ const MONO = () => getComputedStyle(document.body).getPropertyValue("--mono");
     // 이조 궤도: T0..T11 미니 막대
     const oy = by + cell + 52, per = SC.period(mask);
     ctx.fillStyle = P.dim; ctx.font = "12px " + FONT(); ctx.fillText(`이조 궤도 T₀…T₁₁ (주기 ${mask ? per : "—"})`, bx, oy);
-    const mini = Math.min(16, (bw - 8) / 12 / 12 * 12 / 1.1);
+    const mini = Math.max(6, Math.min(14, (bw - 30) / 12 - 1));
     for (let n = 0; n < 12; n++) {
       const t = SC.tp(mask, n), y = oy + 10 + n * (mini * 0.62 + 2);
       for (let i = 0; i < 12; i++) { ctx.fillStyle = (t >> i) & 1 ? (t === mask ? P.accent : P.accent2) : P.surface; ctx.fillRect(bx + 28 + i * (mini + 1), y, mini, mini * 0.62); }

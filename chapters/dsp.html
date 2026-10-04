@@ -84,7 +84,7 @@
       <div class="sim-body side">
         <div class="sim-view"><canvas id="cv-al-fold"></canvas><canvas id="cv-al-time"></canvas></div>
         <div class="sim-controls">
-          <label class="ctrl"><span>샘플레이트 f<sub>s</sub> <output id="al-fs-out"></output></span><input type="range" id="al-fs"></label>
+          <label class="ctrl"><span>샘플레이트 fₛ <output id="al-fs-out"></output></span><input type="range" id="al-fs"></label>
           <label class="ctrl"><span>입력 주파수 f <output id="al-f-out"></output></span><input type="range" id="al-f" min="0" max="1000" value="620"></label>
           <div class="ctrl"><span>신호</span><div class="seg" id="al-sig"><button data-value="sine" class="on">사인</button><button data-value="saw">톱니(순진)</button><button data-value="blep">톱니(PolyBLEP)</button></div></div>
           <div class="ctrl"><span>복원(DAC)</span><div class="seg" id="al-rec"><button data-value="sinc" class="on">이상적 sinc</button><button data-value="zoh">계단(ZOH)</button></div></div>
@@ -723,9 +723,14 @@ const DSP = (function () {
     const out = new Float32Array(n / 2); for (let k = 0; k < n / 2; k++) out[k] = 20 * Math.log10((2 * Math.hypot(re[k], im[k])) / ws + 1e-12);
     return out;
   }
+  function linSpec(ctx, box, db, bin, fmax, lo, hi, color) {
+    const data = [], cols = Math.max(50, Math.floor(box.w)), kmax = Math.min(db.length - 1, Math.floor(fmax / bin));
+    for (let c = 0; c < cols; c++) { const a = Math.max(1, Math.floor((c / cols) * kmax)), b = Math.max(a + 1, Math.floor(((c + 1) / cols) * kmax)); let m = -1e9; for (let k = a; k < b; k++) m = Math.max(m, db[k]); data.push([a * bin, MB.clamp(m, lo - 5, hi)]); }
+    return MB.chart(ctx, box, { x: [0, fmax], y: [lo, hi], yTicks: [-100, -80, -60, -40, -20, 0], xFmt: (v) => (v >= 1000 ? MB.fmt(v / 1000, 3) + "k" : MB.fmt(v, 3)), series: [{ data, color, width: 1.4, fill: color + "22" }] });
+  }
   const cvF = MB.canvas("#cv-al-fold", (ctx, w, h) => {
     const P = MB.palette(), s = fs(), ny = s / 2, f = curF(), type = sig();
-    const box = { x: 46, y: 12, w: w - 58, h: h - 40 };
+    const box = { x: 46, y: 22, w: w - 58, h: h - 58 };
     const zig = []; for (let k = 0; k * ny <= XMAX; k++) zig.push([k * ny, k % 2 ? ny : 0]); zig.push([XMAX, alias(XMAX, s)]);
     for (let z = 1; z * ny < XMAX; z += 2) { const xa = box.x + ((z * ny) / XMAX) * box.w, xb = box.x + (Math.min(XMAX, (z + 1) * ny) / XMAX) * box.w; ctx.fillStyle = P.grid; ctx.fillRect(xa, box.y, xb - xa, box.h); }
     const C = MB.chart(ctx, box, { x: [0, XMAX], y: [0, ny], xFmt: (v) => v / 1000 + "k", yFmt: (v) => (v >= 1000 ? MB.fmt(v / 1000, 3) + "k" : String(v)), yTicks: [0, ny / 2, ny], series: [{ data: zig, color: P.faint, width: 1.5 }], vlines: [{ x: ny, color: P.warn, label: "fs/2" }] });
@@ -744,8 +749,8 @@ const DSP = (function () {
       ctx.beginPath(); ctx.arc(C.X(c.f), C.Y(alias(c.f, s)), 2 + 5 * Math.sqrt(c.a), 0, 7); ctx.fill();
     });
     ctx.globalAlpha = 1; ctx.fillStyle = P.dim; ctx.font = DSP.font(11);
-    ctx.textAlign = "right"; ctx.fillText("입력 주파수 →", box.x + box.w, box.y + box.h + 30);
-    ctx.textAlign = "left"; ctx.fillText("↑ 나타나는 주파수", box.x + 4, box.y + 10);
+    ctx.textAlign = "right"; ctx.fillText("입력 주파수 →", box.x + box.w, box.y + box.h + 32);
+    ctx.textAlign = "left"; ctx.fillText("↑ 나타나는 주파수 (0 … fs/2)", box.x, box.y - 8);
     ctx.restore();
   }, { aspect: 0.4, maxHeight: 260, minHeight: 190 });
   const cvT = MB.canvas("#cv-al-time", (ctx, w, h) => {
@@ -775,9 +780,9 @@ const DSP = (function () {
     ctx.fillStyle = P.dim; ctx.font = DSP.font(11); ctx.textAlign = "left";
     ctx.fillText(`시간: 샘플 ${M}개 (${MB.fmt((M / s) * 1000, 3)} ms)`, tb.x + 2, tb.y + 10);
     // --- 스펙트럼
-    const sb = { x: 40, y: h * 0.42 + 8, w: w - 52, h: h * 0.58 - 30 };
+    const sb = { x: 40, y: h * 0.42 + 8, w: w - 52, h: h * 0.58 - 32 };
     const NF = 8192, db = bhSpec(gen(s, NF, () => f, type)), bin = s / NF;
-    MB.drawSpectrum(ctx, sb, db, bin, { fmin: 1e-6, fmax: ny, log: false, dbMin: -100, dbMax: 0, fill: P.accent + "22" });
+    linSpec(ctx, sb, db, bin, ny, -100, 0, P.accent);
     const exp = []; if (type === "sine") { if (f < ny) exp.push(f); } else for (let n = 1; n * f < ny && n < 200; n++) exp.push(n * f);
     ctx.strokeStyle = P.ok; ctx.setLineDash([2, 3]); ctx.lineWidth = 1;
     exp.slice(0, 60).forEach((e) => { const x = sb.x + (e / ny) * sb.w; ctx.beginPath(); ctx.moveTo(x, sb.y); ctx.lineTo(x, sb.y + sb.h); ctx.stroke(); });
@@ -917,7 +922,7 @@ const DSP = (function () {
     const sp = spec(n, wn, pad, f1, f2, A2), fb = FSR / (n * pad);
     let lo = 0, hi = FSR / 2;
     if (zoom()) { const c = (f1 + f2) / 2, half = Math.max(14 * bin, (f2 - f1) / 2 + 8 * bin); lo = Math.max(0, c - half); hi = Math.min(FSR / 2, c + half); }
-    const box = { x: 46, y: h * 0.24 + 22, w: w - 58, h: h * 0.76 - 52 };
+    const box = { x: 46, y: h * 0.24 + 22, w: w - 58, h: h * 0.76 - 68 };
     const data = []; const k0 = Math.floor(lo / fb), k1 = Math.min(sp.length - 1, Math.ceil(hi / fb)); const stride = Math.max(1, Math.floor((k1 - k0) / 1500));
     for (let k = k0; k <= k1; k += stride) data.push([k * fb, Math.max(-140, sp[k])]);
     const C = MB.chart(ctx, box, { x: [lo, hi], y: [-120, 5], xLabel: "주파수 (Hz)", yTicks: [-120, -100, -80, -60, -40, -20, 0], series: [{ data, color: P.accent, width: 1.6, fill: P.accent + "1c" }], vlines: [{ x: f1, color: P.ok, label: "f₁" }, { x: f2, color: P.warn, label: "f₂" }] });
@@ -931,7 +936,7 @@ const DSP = (function () {
     const isMax = fine[pi] >= fine[pi - 1] && fine[pi] >= fine[pi + 1] && pi > i2 - 8 && pi < i2 + 8;
     let dip = 1e9; for (let i = Math.min(i1, pi); i <= Math.max(i1, pi); i++) dip = Math.min(dip, fine[i]);
     const ok = isMax && pk - dip >= 3 && pk > -125;
-    let p1 = -1e9; for (let i = Math.max(1, i1 - 16); i <= i1 + 16; i++) p1 = Math.max(p1, fine[i]);
+    const kb = Math.floor(f1 / bin); const p1 = Math.max(fine[kb * 16], fine[(kb + 1) * 16]); // 실제 빈에서 본 f₁ 높이
     MB.stat("fft-bin", `${MB.fmt(bin, 3)} Hz <small>· 사이드로브 ${INFO[wn]}</small>`);
     MB.stat("fft-t", `${MB.fmt((n / FSR) * 1000, 3)} ms <small>· Δf/빈 = ${MB.fmt(df() / bin, 2)}</small>`);
     MB.stat("fft-res", ok ? `<span style="color:var(--ok)">분해됨</span> <small>골 ${(pk - dip).toFixed(1)} dB</small>` : `<span style="color:var(--bad)">안 됨</span> <small>${isMax ? "골 " + Math.max(0, pk - dip).toFixed(1) + " dB" : "봉우리 없음"}</small>`);
@@ -1262,7 +1267,7 @@ registerProcessor("mb-delay", MBDelay);`;
     const P = MB.palette(), p = P_();
     const ms = curMs != null ? curMs : p.delay + p.depth / 2, tau = ms / 1000;
     const fmax = MB.clamp(20 / tau, 100, 10000);
-    const box = { x: 44, y: 12, w: w - 56, h: h - 48 };
+    const box = { x: 44, y: 12, w: w - 56, h: h - 60 };
     if (playing && an) { an.getFloatFrequencyData(fdat); MB.drawSpectrum(ctx, box, fdat, an.context.sampleRate / an.fftSize, { fmin: 1e-6, fmax, log: false, dbMin: -110, dbMax: -20, grid: false, color: P.accent2 + "99", width: 1, fill: P.accent2 + "1a" }); }
     const data = []; let mx = -1e9, mn = 1e9;
     for (let i = 0; i <= 1200; i++) { const f = (i / 1200) * fmax, v = H(f, p, tau); data.push([f, MB.clamp(v, -40, 30)]); if (i) { mx = Math.max(mx, v); mn = Math.min(mn, v); } }
@@ -1272,7 +1277,7 @@ registerProcessor("mb-delay", MBDelay);`;
     MB.stat("cb-sp", DSP.fmtHz(1 / tau));
     const t60 = Math.abs(p.fb) > 0.01 ? (-3 * tau) / Math.log10(Math.abs(p.fb)) : 0;
     MB.stat("cb-pk", `${MB.signed(mx, 1)} / ${mn < -60 ? "−∞" : MB.signed(mn, 1)} dB${t60 ? ` <small>T₆₀ ${MB.fmt(t60 < 1 ? t60 * 1000 : t60, 3)}${t60 < 1 ? " ms" : " s"}</small>` : ""}`);
-  }, { aspect: 0.5, maxHeight: 330, minHeight: 220 });
+  }, { aspect: 0.66, maxHeight: 420, minHeight: 240 });
   MB.loop(cv.canvas, () => { if (playing) cv.redraw(); });
 })();
 
@@ -1350,7 +1355,7 @@ registerProcessor("mb-delay", MBDelay);`;
   const cv = MB.canvas("#cv-rv", (ctx, w, h) => {
     const P = MB.palette(); if (!IR) return;
     const span = early() ? Math.min(IR.len, Math.round(0.15 * IR.sr)) : IR.len, h0 = IR.ch[0];
-    const tb = { x: 46, y: 10, w: w - 58, h: h * 0.4 - 16 };
+    const tb = { x: 46, y: 24, w: w - 58, h: h * 0.4 - 30 };
     let pk = 1e-9; for (let i = 0; i < span; i++) pk = Math.max(pk, Math.abs(h0[i]));
     ctx.strokeStyle = P.grid; ctx.beginPath(); ctx.moveTo(tb.x, tb.y + tb.h / 2); ctx.lineTo(tb.x + tb.w, tb.y + tb.h / 2); ctx.stroke();
     ctx.fillStyle = P.accent;
@@ -1360,8 +1365,8 @@ registerProcessor("mb-delay", MBDelay);`;
       for (let i = a; i < b; i++) { const v = h0[i] / pk; if (v < lo) lo = v; if (v > hi) hi = v; }
       ctx.fillRect(tb.x + c, tb.y + tb.h / 2 - (hi * tb.h) / 2, 1, Math.max(1, ((hi - lo) * tb.h) / 2));
     }
-    ctx.fillStyle = P.dim; ctx.font = DSP.font(11); ctx.textAlign = "left"; ctx.fillText(`임펄스 응답 h[n] (왼쪽, 0–${early() ? "150 ms" : (IR.len / IR.sr).toFixed(2) + " s"})`, tb.x + 2, tb.y + 10);
-    const eb = { x: 46, y: h * 0.4 + 10, w: w - 58, h: h * 0.6 - 44 }, tmax = span / IR.sr, data = [], st = Math.max(1, Math.floor(span / 900));
+    ctx.fillStyle = P.dim; ctx.font = DSP.font(11); ctx.textAlign = "left"; ctx.fillText(`임펄스 응답 h[n] (왼쪽, 0–${early() ? "150 ms" : (IR.len / IR.sr).toFixed(2) + " s"})`, tb.x + 2, 14);
+    const eb = { x: 46, y: h * 0.4 + 10, w: w - 58, h: h * 0.6 - 58 }, tmax = span / IR.sr, data = [], st = Math.max(1, Math.floor(span / 900));
     for (let i = 0; i < span; i += st) data.push([i / IR.sr, Math.max(-80, edc[i])]);
     const rt = T() / 10, p0 = IR.preN / IR.sr;
     MB.chart(ctx, eb, { x: [0, tmax], y: [-70, 0], xLabel: "시간 (s)", yLabel: "EDC dB", yTicks: [-60, -40, -20, 0], xFmt: (v) => MB.fmt(v, 3), series: [{ data: [[p0, 0], [p0 + rt * 1.2, -72]], color: P.faint, width: 1.4, dash: [5, 4] }, { data, color: P.accent2, width: 2.2 }], hlines: [{ y: -5, color: P.grid }, { y: -35, color: P.grid }, { y: -60, color: P.warn, label: "−60 dB" }] });
@@ -1402,7 +1407,7 @@ registerProcessor("mb-delay", MBDelay);`;
   function meter(an) { an.getFloatTimeDomainData(td); let pk = 0, s = 0; for (let i = 0; i < td.length; i++) { const a = Math.abs(td[i]); if (a > pk) pk = a; s += td[i] * td[i]; } return [MB.db(pk), MB.db(Math.sqrt(s / td.length))]; }
   const cvC = MB.canvas("#cv-cp-curve", (ctx, w, h) => {
     const P = MB.palette(), T = th(), R = rFromS(ra()), K = kn();
-    const side = Math.min(w - 70, h - 46), box = { x: (w - side) / 2 + 16, y: 10, w: side, h: side };
+    const side = Math.min(w - 70, h - 60), box = { x: (w - side) / 2 + 16, y: 10, w: side, h: side };
     const data = []; for (let x = -60; x <= 0; x += 0.25) data.push([x, curve(x, T, R, K)]);
     const C = MB.chart(ctx, box, { x: [-60, 0], y: [-60, 0], xLabel: "입력 레벨 (dBFS)", xTicks: [-60, -48, -36, -24, -12, 0], yTicks: [-60, -48, -36, -24, -12, 0], bands: K > 0 ? [{ x0: T, x1: Math.min(0, T + K), color: P.accent + "18" }] : [], series: [{ data: [[-60, -60], [0, 0]], color: P.faint, width: 1, dash: [4, 4] }, { data, color: P.accent, width: 2.6 }], vlines: [{ x: T, color: P.warn, label: "T" }] });
     if (playing) {
