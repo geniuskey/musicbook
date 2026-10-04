@@ -86,7 +86,7 @@
         <div class="stat"><span class="k">크기</span><span class="v" id="pl-sone">—</span></div>
         <div class="stat"><span class="k">A-가중</span><span class="v" id="pl-aw">—</span></div>
       </div>
-      <div class="sim-note">'보정' 재생은 1 kHz 기준음(약 −26 dBFS)과 시험음을 번갈아 두 번 들려주며, 시험음 이득은 선택한 폰 곡선에서의 차이 \(L_p(f)-L_p(1\,\text{kHz})\)만큼 키웁니다. 이론상 두 음이 같은 크기로 들려야 하지만, 실제로는 스피커·헤드폰의 주파수 특성(특히 100 Hz 이하)과 실제 재생 음압(이 페이지는 절대 dB SPL을 알 수 없음)에 따라 달라집니다. '같은 전기 레벨' 재생은 보정 없이 같은 진폭으로 들려줘 저음이 얼마나 작게 들리는지 확인합니다. 점선 = 가청 한계 \(T_f\). 노트북 스피커에서는 100 Hz 이하가 거의 들리지 않는 것이 정상입니다(2장 잃어버린 기본음).</div>
+      <div class="sim-note">'보정' 재생은 1 kHz 기준음(약 −30 dBFS)과 시험음을 번갈아 두 번 들려주며, 시험음 이득은 선택한 폰 곡선에서의 차이 \(L_p(f)-L_p(1\,\text{kHz})\)만큼 키웁니다. 이론상 두 음이 같은 크기로 들려야 하지만, 실제로는 스피커·헤드폰의 주파수 특성(특히 100 Hz 이하)과 실제 재생 음압(이 페이지는 절대 dB SPL을 알 수 없음)에 따라 달라집니다. '같은 전기 레벨' 재생은 보정 없이 같은 진폭으로 들려줘 저음이 얼마나 작게 들리는지 확인합니다. 점선 = 가청 한계 \(T_f\). 노트북 스피커에서는 100 Hz 이하가 거의 들리지 않는 것이 정상입니다(2장 잃어버린 기본음).</div>
     </div>
   </section>
 
@@ -399,7 +399,7 @@ function psyTone(f, amp, o = {}) {
 
 /* ---------------------------------------------------------------- 1. 등청감 곡선 */
 (function () {
-  const REF = 0.05; // 1 kHz 기준 진폭(약 −26 dBFS)
+  const REF = 0.03; // 1 kHz 기준 진폭(약 −30 dBFS)
   const phon = MB.range("pl-phon", (v) => v + " phon", () => { cv.redraw(); readout(); });
   const fq = MB.steps("pl-f", ISO.f, (v) => (v >= 1000 ? v / 1000 + " kHz" : v + " Hz"), 100, () => { cv.redraw(); readout(); });
   const showA = MB.check("pl-a", () => cv.redraw());
@@ -843,7 +843,7 @@ function psyTone(f, amp, o = {}) {
     spike(Math.min(tmax, T()), 1 - lead, Math.pow(10, lev() / 20), lead ? P.accent : P.accent2);
     ctx.fillStyle = P.faint; ctx.font = "10px " + PSY_MONO(); ctx.textAlign = "center"; ctx.textBaseline = "top";
     [0, 5, 10, 20, 30, 40].forEach((t) => ctx.fillText(t + " ms", X(t), box.y + box.h + 4));
-  }, { aspect: 0.4, maxHeight: 250, minHeight: 190 });
+  }, { aspect: 0.48, maxHeight: 300, minHeight: 200 });
   update();
 })();
 </script>
