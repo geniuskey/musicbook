@@ -606,7 +606,7 @@ function psyTone(f, amp, o = {}) {
   const sig = MB.range("ps-sig", (v) => (v / 10).toFixed(1) + " 옥타브", () => cv.redraw());
   const wgt = MB.check("ps-w", () => cv.redraw());
   let eng = null, pair = null;
-  const weight = (p) => (wgt() ? Math.exp(-((p - PC) ** 2) / (2 * (sig() / 10) ** 2)) : FMIN * Math.pow(2, p) > 9000 ? 0.25 : 0.6);
+  const weight = (p) => (wgt() ? Math.exp(-((p - PC) ** 2) / (2 * (sig() / 10) ** 2)) : FMIN * Math.pow(2, p) > 9000 ? 0.12 : 0.35);
   const hist = []; // {t, phi}
   function phiAt(t) { let v = 0; for (let i = hist.length - 1; i >= 0; i--) if (hist[i].t <= t) { v = hist[i].phi; if (i < hist.length - 1 && hist[i].glide) { const a = hist[i], b = hist[i + 1]; v = a.phi + ((b.phi - a.phi) * (t - a.t)) / (b.t - a.t); } break; } return v; }
   function start() {
@@ -667,7 +667,7 @@ function psyTone(f, amp, o = {}) {
     ctx.strokeStyle = P.grid; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.stroke();
     ctx.font = "10px " + PSY_FONT(); ctx.textAlign = "center"; ctx.textBaseline = "middle";
     for (let i = 0; i < 12; i++) { const [x, y] = MB.circlePos(i + 9, cx, cy, R + 11); ctx.fillStyle = P.faint; ctx.fillText(MB.pcName(i + 9), x, y); }
-    const ang = -Math.PI / 2 + MB.mod(ph, 1) * 2 * Math.PI;
+    const ang = -Math.PI / 2 + (MB.mod(ph, 1) + 9 / 12) * 2 * Math.PI;
     ctx.strokeStyle = P.accent; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ang) * (R - 4), cy + Math.sin(ang) * (R - 4)); ctx.stroke(); ctx.lineWidth = 1;
     MB.stat("ps-pc", MB.pcName(Math.round(MB.mod(ph, 1) * 12) + 9) + ` <small>${(MB.mod(ph, 1) * 12).toFixed(1)}/12</small>`);
     MB.stat("ps-tot", MB.signed(ph * 12, 1) + " 반음");
