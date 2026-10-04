@@ -31,7 +31,7 @@ const port = server.address().port;
 const js = fs.readFileSync(path.join(root, "js/common.js"), "utf8");
 const slugs = [...js.matchAll(/\{ slug: "(\w+)",\s*num: "(\d+)"/g)].map((m) => m[1]);
 const only = process.argv.slice(2);
-const pages = [""].concat(slugs.map((s) => `chapters/${s}.html`)).filter((p) => !only.length || only.some((o) => p.includes(o)));
+const pages = [""].concat(slugs.map((s) => `chapters/${s}.html`)).filter((p) => !only.length || only.some((o) => (p || "index.html").includes(o)));
 
 const browser = await chromium.launch({ args: ["--autoplay-policy=no-user-gesture-required"] });
 let failed = 0, totalSims = 0;
