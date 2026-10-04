@@ -167,7 +167,7 @@
         <tr><td>IIIm7</td><td>11</td><td>♭9 (근음 위), ♭13 (5음 위)</td><td>프리지안</td></tr>
       </tbody>
     </table></div>
-    <p>이 규칙은 6장의 거칠기와 같은 현상입니다. 단9도는 피치 클래스로는 반음이고, 두 음의 배음들이 서로 반음 거리에서 맥놀이를 만듭니다. 특히 텐션은 위쪽에 놓이므로 화음음의 2배음과 텐션의 기본음이 반음 간격이 되어 거칠어집니다. 반면 장7도(반음 아래 + 옥타브)는 같은 반음 관계여도 근음·3음 위쪽에 '이끎음처럼' 놓이므로 덜 문제됩니다.</p>
+    <p>이 규칙의 근거는 두 가지입니다. 하나는 음향: 단9도는 피치 클래스로 반음이라, 아래 화음음의 2배음과 텐션의 기본음이 반음 간격에서 맥놀이를 만듭니다(6장). 다른 하나는 <b>기능</b>: 장·속7화음 위의 11(F)은 3음(E)을 '반음 아래로 끌어내리려는' 계류음처럼 들려 화음을 sus4나 IV로 착각하게 만듭니다. 실제로 아래 시뮬레이터의 거칠기 모델(배음 합의 총 거칠기)로 재 보면 11을 더한 화음이 9·13을 더한 화음보다 특별히 더 거칠지는 않습니다 — 회피음은 '총 거칠기'보다 <b>특정 음정(단9도)과 화음 정체성</b>의 문제라는 뜻입니다.</p>
     <p><b>상부 구조 3화음</b><span class="en">(Upper Structure Triad)</span>은 텐션을 체계적으로 고르는 재즈 기법입니다. C7의 3음·7음(E, B♭) 위에 D 장3화음(D–F♯–A)을 얹으면 9·♯11·13이 한꺼번에 생겨 C13(♯11), 즉 리디안 도미넌트의 소리가 됩니다. 두 화음을 겹친 <span class="term">폴리코드</span><span class="en">(Polychord)</span>로 보고 \(\frac{\text{D}}{\text{C7}}\)처럼 분수로 적기도 합니다.</p>
     <figure class="diagram">
       <svg viewBox="0 0 800 250" role="img" aria-label="상부 구조 3화음">
@@ -204,7 +204,7 @@
         <div class="stat"><span class="k">암시하는 음계</span><span class="v" id="chd-tn-scale">—</span></div>
         <div class="stat"><span class="k">거칠기 (Sethares)</span><span class="v" id="chd-tn-r">—</span></div>
       </div>
-      <div class="sim-note">보이싱: 근음은 베이스(2옥타브), 3음·7음 셸은 그 위, 텐션은 다시 한 옥타브 위에 쌓습니다. 그림에서 회색 = 화음음, 보라 = 사용 가능한 텐션, 빨강 = 회피음(어느 화음음의 단9도 위인지 선으로 연결), 주황 = 텐션끼리 반음 충돌입니다. '암시하는 음계'는 화음음+텐션을 모두 포함하는 음계를 찾아 보여 줍니다 — 텐션 선택은 곧 그 화음 위에서 쓸 음계 선택입니다. 거칠기는 각 음을 배음 6개(진폭 0.88ⁿ)로 보고 Sethares(1993)의 플롬프–레벨트 근사로 모든 성분 쌍을 합한 값(6장)입니다. '해결'은 속7일 때 4도 위 장7화음으로 진행합니다.</div>
+      <div class="sim-note">보이싱: 근음은 베이스(2옥타브), 3음·7음 셸은 그 위, 텐션은 다시 한 옥타브 위에 쌓습니다. 그림에서 회색 = 화음음, 보라 = 사용 가능한 텐션, 빨강 = 회피음(어느 화음음의 단9도 위인지 선으로 연결), 주황 = 텐션끼리 반음 충돌입니다. '암시하는 음계'는 화음음+텐션을 모두 포함하는 음계를 찾아 보여 줍니다 — 텐션 선택은 곧 그 화음 위에서 쓸 음계 선택입니다. 거칠기는 각 음을 배음 6개(진폭 0.88ⁿ)로 보고 Sethares(1993)의 플롬프–레벨트 근사로 모든 성분 쌍을 합한 값(6장, 오른쪽 막대)입니다 — 음이 늘수록 커지므로 회피음 판정과는 별개의 지표로 보세요. '해결'은 속7일 때 4도 위 장7화음으로 진행합니다.</div>
     </div>
   </section>
 
@@ -289,7 +289,7 @@
           <div class="ctrl"><span>예제</span><div class="chd-presets" id="chd-id-pre">
             <button class="btn" data-n="48,52,55,58,62">C E G B♭ D</button><button class="btn" data-n="52,55,59,62">E G B D</button><button class="btn" data-n="45,48,52,55">A C E G</button><button class="btn" data-n="47,50,53,56">B D F A♭</button><button class="btn" data-n="52,55,60">E G C</button><button class="btn" data-n="48,53,55">C F G</button><button class="btn" data-n="48,53,58,63">C F B♭ E♭</button><button class="btn" data-n="48,52,54,59">C E F♯ B</button>
           </div></div>
-          <label class="check"><input type="checkbox" id="chd-id-flat"> ♭ 표기</label>
+          <label class="check"><input type="checkbox" id="chd-id-flat"> ♭ 표기 강제 (기본: 1위 후보에 맞춰 자동)</label>
           <div class="btn-row"><button class="btn primary" id="chd-id-play">▶ 듣기</button><button class="btn" id="chd-id-clear">지우기</button></div>
         </div>
       </div>
@@ -427,10 +427,12 @@ const CH = (function () {
   const forte = (pcs) => FORTE[key(pcs)] || null;
   const pfStr = (p) => "[" + p.map((x) => (x === 10 ? "A" : x === 11 ? "B" : x)).join("") + "]";
   /** 철자: 글자 중복·임시표가 적은 쪽, 동점이면 조표 관례 */
-  function flatFor(pcs, rootPc, minorish) {
-    const score = (fl) => { const L = new Set(); let d = 0, a = 0; pcs.forEach((p) => { const s = MB.spell(60 + MB.mod(p, 12), fl); if (L.has(s.letter)) d++; L.add(s.letter); if (s.acc) a++; }); return d * 10 + a; };
+  /** 철자: ivs(근음 기준 반음)를 3도 쌓기 글자(근음 글자 + 도수)와 비교해 ♯/♭ 중 어긋남이 적은 쪽 */
+  const STEP = { "1": 0, "♭9": 1, "9": 1, "♯9": 1, "2": 1, "♭3": 2, "3": 2, "4": 3, "11": 3, "♯11": 3, "♭5": 4, "5": 4, "♯5": 4, "6": 5, "13": 5, "♭13": 5, "♭7": 6, "7": 6, "𝄫7": 6 };
+  function flatFor(ivs, rootPc) {
+    const score = (fl) => { const rl = MB.spell(60 + rootPc, fl).letter; let bad = 0, acc = 0; ivs.forEach((x) => { const sp = MB.spell(60 + rootPc + MB.mod(x, 12), fl); if (sp.letter !== (rl + (STEP[deg(x, ivs)] || 0)) % 7) bad++; if (sp.acc) acc++; }); return bad * 10 + acc; };
     const a = score(false), b = score(true);
-    return a === b ? MB.prefersFlats(rootPc, minorish) : b < a;
+    return a === b ? MB.prefersFlats(rootPc) : b < a;
   }
   /** 근음 기준 반음 → 도수 이름 (화음 맥락 고려) */
   function deg(iv, ivs) {
@@ -533,7 +535,7 @@ const CH = (function () {
   const inv = MB.seg("chd-bd-inv", () => refresh());
   const kb = MB.keyboard("#chd-bd-kb", { lo: 48, hi: 84, inst: () => instSel.value });
   const q = () => Q[qSel.value], root = () => +rootSel.value;
-  const flat = () => CH.flatFor(q().iv.map((x) => root() + x), root(), q().iv.includes(3) && !q().iv.includes(4));
+  const flat = () => CH.flatFor(q().iv, root());
   function voiced() {
     const ivs = q().iv, n = ivs.length, k = Math.min(+inv(), n - 1);
     const base = 48 + root() + (root() < 5 ? 12 : 0);
@@ -566,7 +568,7 @@ const CH = (function () {
   function refresh() {
     const { items, k } = voiced(), fl = flat(), ms = items.map((x) => x.m);
     kb.set(ms, "mark"); kb.clear("root"); kb.mark(items.filter((x) => MB.mod(x.iv, 12) === 0).map((x) => x.m), "root");
-    MB.staff("#chd-bd-staff", [{ notes: ms, label: "" }], { flat: fl, width: 260 });
+    MB.staff("#chd-bd-staff", [{ notes: ms, label: "" }], { flat: fl, width: 520 });
     const bass = MB.mod(ms[0], 12);
     MB.stat("chd-bd-sym", MB.pcName(root(), fl) + q().sym + (k ? "/" + MB.pcName(bass, fl) : ""));
     MB.stat("chd-bd-notes", items.map((x) => `${MB.pcName(x.m, fl)}<small>(${CH.deg(x.iv, q().iv)})</small>`).join(" "));
@@ -600,7 +602,7 @@ const CH = (function () {
   const inv = MB.seg("chd-iv-inv", () => { refresh(); playCur(); });
   const kb = MB.keyboard("#chd-iv-kb", { lo: 48, hi: 84 });
   const root = () => +rootSel.value, ivs = () => MB.CHORDS[qs()].iv, n = () => ivs().length;
-  const flat = () => CH.flatFor(ivs().map((x) => root() + x), root(), ivs().includes(3) && !ivs().includes(4));
+  const flat = () => CH.flatFor(ivs(), root());
   const posAll = () => { const b = 53 + MB.mod(root() - 5, 12); return [...Array(n())].map((_, k) => MB.chord(b, qs(), k)); };
   /** 숫자저음: 베이스 위 일반 음정(글자 거리) */
   function figures(ms) {
@@ -680,7 +682,7 @@ const CH = (function () {
     });
     return out.sort((a, c) => a.m - c.m);
   }
-  const flat = () => CH.flatFor(build().map((o) => o.m), root(), base() === "min7");
+  const flat = () => CH.flatFor(build().map((o) => o.iv), root());
   const cv = MB.canvas("#chd-tn-cv", (ctx, w, h) => {
     const P = MB.palette(), v = build(), fl = flat();
     const lo = v[0].m - 2, hi = v[v.length - 1].m + 2, top = 12, bot = h - 14;
@@ -698,18 +700,18 @@ const CH = (function () {
       if (o.role === "tt") { ctx.fillStyle = P.warn; ctx.textAlign = "left"; ctx.font = "11px " + CH.FONT(); ctx.fillText(`${o.vsT}와 반음`, x1 + 20, y + 4); }
     });
     // 거칠기 미터
-    const r = CH.rough(v.map((o) => o.m)), mx = 3;
+    const r = CH.rough(v.map((o) => o.m)), mx = 6;
     const mx0 = w - 30;
     if (w > 460) {
       ctx.fillStyle = P.surface; ctx.fillRect(mx0, top, 16, bot - top);
-      const hh = MB.clamp(r / mx, 0, 1) * (bot - top); ctx.fillStyle = r > 1.8 ? P.bad : r > 1.1 ? P.warn : P.ok; ctx.fillRect(mx0, bot - hh, 16, hh);
+      const hh = MB.clamp(r / mx, 0, 1) * (bot - top); ctx.fillStyle = r > 4 ? P.bad : r > 2.5 ? P.warn : P.ok; ctx.fillRect(mx0, bot - hh, 16, hh);
       ctx.save(); ctx.translate(mx0 - 6, (top + bot) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillStyle = P.dim; ctx.font = "11px " + CH.FONT(); ctx.fillText("거칠기", 0, 0); ctx.restore();
     }
   }, { aspect: (w) => (w < 520 ? 0.8 : 0.45), maxHeight: 340, minHeight: 230 });
   function refresh() {
     const v = build(), fl = flat(), ms = v.map((o) => o.m);
     kb.set(ms, "mark"); kb.clear("alt"); kb.mark(v.filter((o) => o.role !== "ct").map((o) => o.m), "alt"); kb.clear("root"); kb.mark([ms[0]], "root");
-    MB.staff("#chd-tn-staff", [{ notes: ms }], { flat: fl, width: 260 });
+    MB.staff("#chd-tn-staff", [{ notes: ms }], { flat: fl, width: 520 });
     const ten = v.filter((o) => o.role !== "ct").map((o) => o.lab);
     const sym = MB.pcName(root(), fl) + { dom7: "7", maj7: "maj7", min7: "m7" }[base()] + (ten.length ? `(${ten.join(",")})` : "");
     MB.stat("chd-tn-sym", sym);
@@ -771,7 +773,7 @@ const CH = (function () {
   const kb = MB.keyboard("#chd-vo-kb", { lo: 33, hi: 89, labels: "c" });
   const root = () => +rootSel.value;
   const tones = () => (qs() === "maj6" ? [0, 4, 7, 9] : MB.CHORDS[qs()].iv);
-  const flat = () => CH.flatFor(tones().map((x) => root() + x), root(), qs() === "min7" || qs() === "hdim7");
+  const flat = () => CH.flatFor(tones().concat(14), root());
   function voicing(key) {
     const def = VO.find((x) => x[0] === key), rel = def[2](tones());
     let R = lo() + MB.mod(root() - lo(), 12);
@@ -791,7 +793,7 @@ const CH = (function () {
     const top = 14, bot = h - 16, mlo = 33, mhi = 89, Y = (m) => bot - ((m - mlo) / (mhi - mlo)) * (bot - top);
     for (let m = 36; m <= 84; m += 12) { ctx.strokeStyle = P.grid; ctx.beginPath(); ctx.moveTo(34, Y(m)); ctx.lineTo(lw - 8, Y(m)); ctx.stroke(); ctx.fillStyle = P.faint; ctx.font = "10px " + CH.MONO(); ctx.textAlign = "right"; ctx.fillText("C" + (m / 12 - 1), 30, Y(m) + 3); }
     ctx.strokeStyle = P.bad; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(34, Y(52)); ctx.lineTo(lw - 8, Y(52)); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = P.bad; ctx.font = "10px " + CH.FONT(); ctx.textAlign = "left"; ctx.fillText("E3 (단2도 LIL)", 40, Y(52) - 3);
+    ctx.fillStyle = P.bad; ctx.font = "10px " + CH.FONT(); ctx.textAlign = "right"; ctx.fillText("E3: 단2도 LIL", lw - 10, Y(52) - 3);
     const cx = 70;
     ms.forEach((m, i) => {
       const y = Y(m);
@@ -853,10 +855,11 @@ const CH = (function () {
     return parts.join(" · ");
   }
   function refresh() {
-    const ms = [...sel].sort((a, b) => a - b), fl = flatChk();
+    const ms = [...sel].sort((a, b) => a - b), top = MB.detectChord(ms)[0];
+    const fl = flatChk() || (top ? CH.flatFor(MB.CHORDS[top.quality].iv, top.root) : false);
     kb.set(ms, "mark");
-    if (!ms.length) { listEl.innerHTML = "건반을 눌러 음을 고르세요."; MB.staff("#chd-id-staff", [{ notes: [] }], { width: 240 }); ["chd-id-notes", "chd-id-pf", "chd-id-iv"].forEach((id) => MB.stat(id, "—")); return; }
-    MB.staff("#chd-id-staff", [{ notes: ms }], { flat: fl, width: 240 });
+    if (!ms.length) { listEl.innerHTML = "건반을 눌러 음을 고르세요."; MB.staff("#chd-id-staff", [{ notes: [] }], { width: 520 }); ["chd-id-notes", "chd-id-pf", "chd-id-iv"].forEach((id) => MB.stat(id, "—")); return; }
+    MB.staff("#chd-id-staff", [{ notes: ms }], { flat: fl, width: 520 });
     const cands = MB.detectChord(ms, fl).slice(0, 6);
     const mx = cands.length ? cands[0].score : 1;
     listEl.innerHTML = cands.length ? cands.map((c, i) => `<div class="row${i === 0 ? " top" : ""}"><span class="sym">${c.sym}</span><span><span class="bar" style="width:${Math.max(4, (c.score / Math.max(mx, 1)) * 90)}px"></span><span class="t-mono" style="font-family:var(--mono);font-size:12px">${c.score.toFixed(1)}</span> <span class="why">${MB.CHORDS[c.quality].name} — ${explain(c, ms, fl)}</span></span></div>`).join("")
