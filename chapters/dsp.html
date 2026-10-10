@@ -107,9 +107,9 @@
       <div class="sim-readout">
         <div class="stat"><span class="k">나이퀴스트 f<sub>s</sub>/2</span><span class="v" id="al-ny">—</span></div>
         <div class="stat"><span class="k">입력 → 들리는 주파수</span><span class="v" id="al-fa">—</span></div>
-        <div class="stat"><span class="k">에일리어스 에너지(측정)</span><span class="v" id="al-en">—</span></div>
+        <div class="stat"><span class="k">기대 배음 대역 밖 전력 비율</span><span class="v" id="al-en">—</span></div>
       </div>
-      <div class="sim-note"><b>볼륨을 낮추고 시작하세요.</b> 위 그래프: 가로축은 입력 주파수(0–24 kHz), 세로축은 샘플링 후 실제로 나타나는 주파수(0–f<sub>s</sub>/2). 톱날 모양 선이 접힘 함수이고 점은 각 배음이 떨어지는 자리입니다(빨강 = 나이퀴스트를 넘어 접힌 성분). 아래 왼쪽은 원래 파형(회색)·샘플(점)·복원 파형(청록), 오른쪽은 출력의 FFT 스펙트럼(초록 점선 = 있어야 할 배음 위치). 해볼 것: ① f<sub>s</sub> = 8 kHz에서 사인 스윕 — 4 kHz를 넘는 순간 음높이가 거꾸로 내려옵니다. ② '톱니(순진)'으로 스윕하면 배음들이 사방으로 접혀 '새소리' 같은 잡음이 납니다. PolyBLEP로 바꾸면 크게 줄어듭니다. ③ 복원을 '계단'으로 바꾸면 f<sub>s</sub>의 배수 근처에 이미지 성분이 남아 쇳소리가 섞입니다. 모델: 가상 샘플레이트에서 직접 표본을 계산한 뒤, 출력 장치 레이트로 Lanczos 창 sinc(±8 탭) 보간 또는 영차 유지로 변환합니다.</div>
+      <div class="sim-note"><b>볼륨을 낮추고 시작하세요.</b> 위 그래프: 가로축은 입력 주파수(0–24 kHz), 세로축은 샘플링 후 실제로 나타나는 주파수(0–f<sub>s</sub>/2). 톱날 모양 선이 접힘 함수이고 점은 각 배음이 떨어지는 자리입니다(빨강 = 나이퀴스트를 넘어 접힌 성분). 아래 왼쪽은 원래 파형(회색)·샘플(점)·복원 파형(청록), 오른쪽은 출력의 FFT 스펙트럼(초록 점선 = 있어야 할 배음 위치). 표시된 전력 비율은 기대 배음 ±6빈 밖만 센다. 기존 배음과 겹쳐 접힌 성분은 빠지고 창 누설은 포함될 수 있어 총 에일리어싱 전력은 아니다. 해볼 것: ① f<sub>s</sub> = 8 kHz에서 사인 스윕 — 4 kHz를 넘는 순간 음높이가 거꾸로 내려옵니다. ② '톱니(순진)'으로 스윕하면 배음들이 사방으로 접혀 '새소리' 같은 잡음이 납니다. PolyBLEP로 바꾸면 크게 줄어듭니다. ③ 복원을 '계단'으로 바꾸면 f<sub>s</sub>의 배수 근처에 이미지 성분이 남아 쇳소리가 섞입니다. 모델: 가상 샘플레이트에서 직접 표본을 계산한 뒤, 출력 장치 레이트로 Lanczos 창 sinc(±8 탭) 보간 또는 영차 유지로 변환합니다.</div>
     </div>
     <div class="callout warn"><strong>에일리어싱은 ADC에서만 생기지 않는다</strong> 디지털 영역의 <b>비선형 처리</b>(디스토션, 클리퍼, 웨이브셰이퍼, 강한 컴프레서, 순진한 오실레이터)는 새 배음을 만들고, 그것이 \(f_s/2\)를 넘으면 그대로 접힌다. 그래서 고급 플러그인은 내부에서 2–8배 오버샘플링한 뒤 처리하고 다시 내린다. 같은 이유로 신시사이저는 대역 제한 파형표, BLIT, PolyBLEP 같은 기법을 쓴다(2장).</div>
   </section>
@@ -168,7 +168,7 @@
         <div class="stat"><span class="k">측정 SNR (이 신호)</span><span class="v" id="q-snr">—</span></div>
         <div class="stat"><span class="k">신호 / LSB</span><span class="v" id="q-lsb">—</span></div>
       </div>
-      <div class="sim-note">위: 원래 사인(회색)과 양자화 출력(보라), 그 아래 오차 \(e = y - x\)(청록). 아래: 출력 스펙트럼(블랙먼 창, 16384점)과 이론적 잡음 바닥(점선, 빈당). 테스트 주파수 997 Hz는 AES17 측정 규격이 쓰는 값으로, 샘플레이트와 정수비가 아니라 오차가 주기적으로 반복되지 않습니다. 해볼 것: ① 6비트, −20 dBFS, 디더 없음 → 스펙트럼에 고조파 막대가 줄지어 서고, '오차만 듣기'를 켜면 음과 함께 변하는 거친 소리. TPDF로 바꾸면 막대가 사라지고 평탄한 잡음만 남습니다. ② 페이드아웃 버튼: 디더 없이는 신호가 작아질수록 지글거리다 뚝 끊기고, TPDF에서는 쉬익 소리 아래로 사인이 끝까지 들립니다. ③ 노이즈 셰이핑을 켜면 잡음 바닥이 +12 dB/oct로 기울어 저역이 조용해집니다. 모델: 미드트레드 반올림 양자화기(1비트는 부호 양자화), 풀스케일 ±1.</div>
+      <div class="sim-note">위: 원래 사인(회색)과 양자화 출력(보라), 그 아래 오차 \(e = y - x\)(청록). 아래: 출력 스펙트럼(블랙먼 창, 16384점)과 이론적 잡음 바닥(점선, 빈당). 테스트 주파수 997 Hz는 AES17 측정 규격이 쓰는 값으로, 표본 주파수와 작은 정수비가 아니라 짧은 반복을 피합니다. 48 kHz에서는 48,000샘플(1초) 뒤에 이상적 사인 표본과 결정론적 양자화 오차가 반복합니다. 해볼 것: ① 6비트, −20 dBFS, 디더 없음 → 스펙트럼에 고조파 막대가 줄지어 서고, '오차만 듣기'를 켜면 음과 함께 변하는 거친 소리. TPDF로 바꾸면 막대가 사라지고 평탄한 잡음만 남습니다. ② 페이드아웃 버튼: 디더 없이는 신호가 작아질수록 지글거리다 뚝 끊기고, TPDF에서는 쉬익 소리 아래로 사인이 끝까지 들립니다. ③ 노이즈 셰이핑을 켜면 잡음 바닥이 +12 dB/oct로 기울어 저역이 조용해집니다. 모델: 미드트레드 반올림 양자화기(1비트는 부호 양자화), 풀스케일 ±1.</div>
     </div>
   </section>
 
@@ -182,7 +182,7 @@
       </svg>
       <figcaption><b>그림 15-3.</b> \(f_s/4\) 사인파를 위상 45°에서 샘플링하면 모든 샘플이 ±0.707이다. 이 샘플들을 0 dBFS로 정규화(×1.414)하면 샘플 피크는 0 dBFS지만, 복원된 사인의 실제 피크는 <b>+3.01 dBTP</b>로 DAC나 이후 코덱(MP3·AAC 디코더)에서 클리핑된다.</figcaption>
     </figure>
-    <p>그래서 방송·스트리밍 규격은 <span class="term">트루 피크</span><span class="en">(True Peak, dBTP)</span>를 씁니다. ITU-R BS.1770-4는 신호를 4배 오버샘플링(보간)해 피크를 재도록 정하고, EBU R128은 최대 −1 dBTP를 요구합니다. 손실 압축 코덱은 재구성 과정에서 피크를 더 키우므로 스트리밍 서비스는 −1 dBTP(때로 −2)를 권장합니다.</p>
+    <p>그래서 방송·스트리밍 규격은 <span class="term">트루 피크</span><span class="en">(True Peak, dBTP)</span>를 씁니다. ITU-R BS.1770-5(2023)의 부속서 예는 48 kHz 입력을 4배, 96 kHz 입력을 2배 보간하여 피크를 추정합니다. 유사하거나 더 우수한 측정 방법도 허용하며 유한 보간비가 오차 없는 피크를 보장하지는 않습니다. EBU R128은 최대 −1 dBTP를 요구합니다. 손실 압축 코덱은 재구성 과정에서 피크를 더 키우므로 스트리밍 서비스는 −1 dBTP(때로 −2)를 권장합니다.</p>
   </section>
 
   <!-- =============================================================== 6 -->
@@ -268,7 +268,7 @@
     <h2>LTI 시스템과 필터: FIR, IIR, 바이쿼드</h2>
     <p>EQ, 리버브, 스피커, 방 — 이들은 근사적으로 <span class="term">선형 시불변</span><span class="en">(LTI)</span> 시스템입니다. LTI 시스템은 임펄스 응답 \(h[n]\) 하나로 완전히 기술되고, 출력은 입력과 \(h\)의 <span class="term">컨볼루션</span>입니다. 주파수 영역에서는 곱셈이 됩니다.</p>
     <div class="formula">$$y[n] = \sum_{k} h[k]\,x[n-k] \quad\Longleftrightarrow\quad Y(z) = H(z)\,X(z), \qquad H(z) = \frac{\sum_{i=0}^{M} b_i z^{-i}}{1 + \sum_{j=1}^{P} a_j z^{-j}}$$
-      <div class="where">분모가 1이면(\(a_j = 0\)) 임펄스 응답이 유한한 <b>FIR</b>, 출력을 되먹이면(\(a_j \ne 0\)) 무한히 이어지는 <b>IIR</b>이다. \(z = e^{j2\pi f/f_s}\)를 대입하면 주파수 응답.</div>
+      <div class="where">분모가 1이면(\(a_j = 0\)) 임펄스 응답이 유한한 <b>FIR</b>, 재귀형은 일반적으로 무한 임펄스 응답의 <b>IIR</b>이지만 극점·영점 상쇄와 초기조건에 따라 유한 응답도 가능하다. FIR/IIR은 구현의 되먹임 유무만으로 정의하지 않는다. \(z = e^{j2\pi f/f_s}\)를 대입하면 주파수 응답.</div>
     </div>
     <div class="table-wrap"><table>
       <thead><tr><th></th><th>FIR</th><th>IIR</th></tr></thead>
@@ -432,7 +432,7 @@
     <div class="table-wrap"><table>
       <thead><tr><th>규격·서비스</th><th class="num">목표 통합 라우드니스</th><th class="num">트루 피크 상한</th></tr></thead>
       <tbody>
-        <tr><td>EBU R128 (유럽 방송)</td><td class="num">−23 LUFS ±0.5</td><td class="num">−1 dBTP</td></tr>
+        <tr><td>EBU R128 (유럽 방송)</td><td class="num">−23.0 LUFS (2023판; 생방송 등 ±1.0 LU, 측정 품질관리 ±0.2 LU)</td><td class="num">−1 dBTP</td></tr>
         <tr><td>ATSC A/85 (미국 방송), 국내 지상파</td><td class="num">−24 LKFS</td><td class="num">−2 dBTP</td></tr>
         <tr><td>스포티파이·유튜브·타이달 등(기본값)</td><td class="num">약 −14 LUFS</td><td class="num">−1 dBTP 권장</td></tr>
         <tr><td>애플 뮤직(사운드 체크)</td><td class="num">약 −16 LUFS</td><td class="num">−1 dBTP 권장</td></tr>
@@ -463,9 +463,9 @@
       <li>대역 제한 신호는 \(f_s > 2B\)로 샘플링하면 sinc 보간으로 완벽히 복원된다. \(f_s/2\)를 넘는 성분은 \(|f - kf_s|\)로 접혀 되돌릴 수 없으므로 샘플링 전에(그리고 비선형 처리 전에) 막아야 한다.</li>
       <li>44.1 kHz는 비디오테이프 PCM 어댑터(3샘플 × 245줄 × 60필드)에서, 48 kHz는 영상 프레임과의 정수 관계에서 왔다. 높은 레이트의 실익은 필터 설계와 처리 여유다.</li>
       <li>양자화 SNR ≈ 6.02N + 1.76 dB. 작은 신호에서는 오차가 왜곡이 되므로 TPDF 디더(±1 LSB)로 오차를 신호와 독립인 잡음으로 바꾸고, 노이즈 셰이핑으로 잡음을 덜 들리는 대역에 옮긴다.</li>
-      <li>샘플 피크 ≠ 실제 피크. 트루 피크(4배 오버샘플링)로 재고 −1 dBTP 이하를 지킨다.</li>
+      <li>샘플 피크 ≠ 실제 피크. 트루 피크(48 kHz 입력의 4배 보간 예; 입력률·필터에 따른 추정 오차 있음)로 재고 −1 dBTP 이하를 지킨다.</li>
       <li>FFT 빈 폭은 \(f_s/N = 1/T\). 창 함수는 누설(사이드로브)과 해상도(주엽 폭)를 맞바꾸고, 영 채우기는 해상도를 높이지 않는다. 스펙트로그램의 창 길이는 시간·주파수 해상도를 동시에 정한다.</li>
-      <li>LTI 시스템은 임펄스 응답의 컨볼루션이다. FIR은 선형 위상·항상 안정, IIR(바이쿼드)은 적은 계산으로 날카롭다. RBJ 쿡북 공식이 업계 표준 EQ 계수다.</li>
+      <li>LTI 시스템은 임펄스 응답의 컨볼루션이다. 유한 계수의 FIR은 안정하지만 선형 위상에는 대칭·반대칭 계수 조건 등이 필요하다. 선형 위상도 크기 응답 변화가 있으면 모든 파형을 그대로 보존하지는 않는다. IIR(바이쿼드)은 적은 계산으로 날카롭다. RBJ 쿡북 공식이 업계 표준 EQ 계수다.</li>
       <li>지연 + 합 = 콤 필터(빗살 간격 1/τ). 지연을 흔들면 플랜저·코러스, 되먹임 콤 병렬 + 올패스 직렬은 슈뢰더 리버브, 측정한 IR과 컨볼루션하면 컨볼루션 리버브.</li>
       <li>컴프레서 = 정적 곡선(문턱·비율·니) + 시간 상수(어택·릴리스). 음량 비교는 반드시 같은 라우드니스에서: 방송 −23 LUFS(EBU R128), 스트리밍 약 −14 LUFS. 지연은 버퍼/샘플레이트.</li>
     </ol>
@@ -800,7 +800,7 @@ const DSP = (function () {
     exp.slice(0, 60).forEach((e) => { const x = sb.x + (e / ny) * sb.w; ctx.beginPath(); ctx.moveTo(x, sb.y); ctx.lineTo(x, sb.y + sb.h); ctx.stroke(); });
     ctx.setLineDash([]);
     ctx.fillStyle = P.dim; ctx.textAlign = "right"; ctx.fillText("출력 스펙트럼 0 … fs/2 (dB)", sb.x + sb.w, sb.y + 10);
-    // 에일리어스 에너지: 기대 배음 ±6빈 밖의 에너지 비율
+    // 기대 배음 ±6빈 밖의 전력: 겹쳐 접힌 성분은 제외되며 창 누설이 포함될 수 있다.
     let tot = 0, bad = 0;
     for (let k = 3; k < db.length; k++) { const p = Math.pow(10, db[k] / 10); tot += p; const fk = k * bin; let near = false; for (const e of exp) if (Math.abs(fk - e) <= 6 * bin) { near = true; break; } if (!near) bad += p; }
     MB.stat("al-en", tot > 0 ? (bad / tot > 0.98 ? "전부 <small>(0 dB)</small>" : MB.fmt(10 * Math.log10(bad / tot + 1e-15), 3) + " dB <small>(전체 대비)</small>") : "—");

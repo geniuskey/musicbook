@@ -120,8 +120,8 @@
       </tbody>
     </table></div>
     <p>음악 이론에는 오래전부터 "큰 도약 뒤에는 반대 방향으로 순차 진행해 빈 곳을 메운다"는 <span class="term">갭–필</span><span class="en">(Gap-fill, Meyer 1973)</span> 규칙이 있었습니다. 폰 히펠과 휴런(2000)은 이 현상의 상당 부분이 작곡가의 의도 없이도 생긴다는 것을 보였습니다. 선율의 음이 평균 \(\mu\), 표준편차 \(\sigma\)인 음역(tessitura) 안에서 무작위로 뽑힌다고만 가정해도, 큰 도약은 대개 음을 음역 가장자리로 데려가므로 다음 음은 확률적으로 가운데 쪽, 즉 반대 방향에 놓이게 됩니다.</p>
-    <div class="formula">$$P(\text{반전} \mid p_i) \;=\; P(p_{i+1} < p_i) \;=\; \Phi\!\left(\frac{p_i-\mu}{\sigma}\right) \qquad (p_i > \mu,\ \text{독립 정규 가정})$$
-      <div class="where">\(\Phi\): 표준정규 누적분포. 음이 평균보다 \(1\sigma\) 위에 있으면 다음 음이 아래일 확률은 84%다. 도약 크기와 무관하게 '어디에 도착했는가'가 반전을 예측한다는 것이 이 모델의 핵심이며, 실제 말뭉치에서 음역 중앙을 <b>가로질러</b> 도약한 경우에는 반전 경향이 크게 약해진다는 것이 그 증거였다.</div>
+    <div class="formula">$$P(\text{반전} \mid p_i,\ p_{i-1}&lt;p_i) \;=\; P(p_{i+1} < p_i) \;=\; \Phi\!\left(\frac{p_i-\mu}{\sigma}\right) \qquad (p_i > \mu,\ \text{독립 정규 가정})$$
+      <div class="where">\(\Phi\): 표준정규 누적분포. 음이 평균보다 \(1\sigma\) 위에 있으면 다음 음이 아래일 확률은 84%다. 앞선 음에서 상승해 도착했을 때 이 하행은 방향 반전이다. 현재 음만 고정하고 이전·다음 음을 독립적으로 뽑으면 반전 확률은 2F(1−F)이며 F=Φ((pᵢ−μ)/σ)다. 도약 크기와 무관하게 '어디에 도착했는가'가 반전을 예측한다는 것이 이 모델의 핵심이며, 실제 말뭉치에서 음역 중앙을 <b>가로질러</b> 도약한 경우에는 반전 경향이 크게 약해진다는 것이 그 증거였다.</div>
     </div>
     <p>아래 표는 이 장에서 쓰는 공유 저작물 다섯 곡의 음정을 이 페이지의 스크립트가 직접 센 결과입니다. 표본은 작지만 '순차가 대부분'이라는 경향은 분명합니다.</p>
     <div class="table-wrap"><table>
@@ -222,7 +222,7 @@
         <div class="stat"><span class="k">전위 음정열</span><span class="v" id="mo-iv-i">—</span></div>
         <div class="stat"><span class="k">조성 / 전위 축</span><span class="v" id="mo-key">—</span></div>
       </div>
-      <div class="sim-note">각 줄이 하나의 변형입니다(왼쪽 라벨). 같은 색 막대 묶음을 귀로 비교해 보세요. 전위와 역행은 그림으로는 대칭이 뚜렷하지만 귀로는 원형과 '같은 동기'로 잘 들리지 않는 경우가 많습니다. 리듬이 함께 뒤집히는 역행은 특히 그렇습니다. 반대로 이조와 반복 진행은 바로 알아듣습니다. 음정열이 그대로이기 때문입니다. '건반으로 새 동기 녹음'을 켜고 건반을 누르면 동기를 새로 입력합니다(최대 8음, 누른 시간을 16분음표 단위로 양자화). '음계 안' 기준에서 음계 밖의 음(예: B–A–C–H의 B♭)은 바로 아래 음계음에 반음 변화가 붙은 것으로 처리합니다.</div>
+      <div class="sim-note">각 줄이 하나의 변형입니다(왼쪽 라벨). 같은 색 막대 묶음을 귀로 비교해 보세요. 전위와 역행은 그림으로는 대칭이 뚜렷하지만 귀로는 원형과 '같은 동기'로 잘 들리지 않는 경우가 많습니다. 리듬이 함께 뒤집히는 역행은 특히 그렇습니다. 반대로 이조와 반복 진행은 바로 알아듣습니다. 반음 기준 이조는 반음 음정열을 보존합니다. 음계 안의 반복 진행은 도수 간격·윤곽을 보존하지만 C–E–G→D–F–A처럼 반음 간격은 +4,+3에서 +3,+4로 바뀔 수 있습니다. '건반으로 새 동기 녹음'을 켜고 건반을 누르면 동기를 새로 입력합니다(최대 8음, 누른 시간을 16분음표 단위로 양자화). '음계 안' 기준에서 음계 밖의 음(예: B–A–C–H의 B♭)은 바로 아래 음계음에 반음 변화가 붙은 것으로 처리합니다.</div>
     </div>
   </section>
 
@@ -271,7 +271,7 @@
     <div class="formula">$$\hat P(x_t = j \mid x_{t-n}^{t-1} = \mathbf{c}) = \frac{C(\mathbf{c}, j)}{\sum_{j'} C(\mathbf{c}, j')}, \qquad P_T(j\mid\mathbf c) \propto \hat P(j\mid\mathbf c)^{1/T}$$
       <div class="where">\(C(\mathbf c, j)\): 학습 선율에서 문맥 \(\mathbf c\) 다음에 \(j\)가 나온 횟수(최대우도 추정). \(T\): <b>온도</b>. \(T\to0\)이면 항상 가장 흔한 다음 음(결정적), \(T=1\)이면 학습 분포 그대로, \(T>1\)이면 분포가 평평해져 의외의 음이 늘어난다.</div>
     </div>
-    <p>모델이 얼마나 '예측 가능한' 선율을 만드는지는 <span class="term">엔트로피율</span><span class="en">(Entropy Rate)</span>과 <span class="term">퍼플렉서티</span><span class="en">(Perplexity)</span>로 잽니다. 퍼플렉서티 \(2^H\)는 "매 음마다 평균 몇 개의 후보 중에서 고르는 것과 같은가"로 읽습니다.</p>
+    <p>모델이 얼마나 '예측 가능한' 선율을 만드는지는 <span class="term">엔트로피율</span><span class="en">(Entropy Rate)</span>과 <span class="term">퍼플렉서티</span><span class="en">(Perplexity)</span>로 잽니다. 생성 과정의 정상 엔트로피율은 생성 전이·백오프가 만드는 정상 문맥 분포로 가중해야 합니다. 이 실험의 표시는 학습 문맥 빈도로 가중한 조건부 엔트로피라서 온도 변경 후 정상 엔트로피율과 자동으로 같지는 않습니다. 퍼플렉서티 \(2^H\)는 "매 음마다 평균 몇 개의 후보 중에서 고르는 것과 같은가"로 읽습니다.</p>
     <div class="formula">$$H = -\sum_{\mathbf c} \pi(\mathbf c) \sum_j P(j\mid\mathbf c)\log_2 P(j\mid\mathbf c), \qquad \mathrm{PP} = 2^{H}$$
       <div class="where">\(\pi(\mathbf c)\): 문맥 \(\mathbf c\)의 출현 빈도. 상태 수가 \(S\)이면 \(n\)차 모델의 전이표는 \(S^n\times S\) 칸이다. \(S=8,\ n=3\)이면 4,096칸인데 동요 한 곡은 수십 개의 음뿐이라 대부분의 칸이 0이다. 이것이 <b>희소성</b>이고, 그 결과 고차 모델은 학습 곡을 거의 그대로 베낀다(Brooks et al. 1957이 이미 관찰한 현상).</div>
     </div>
@@ -295,7 +295,7 @@
       <div class="sim-readout">
         <div class="stat"><span class="k">상태 / 관측된 문맥</span><span class="v" id="mk-states">—</span></div>
         <div class="stat"><span class="k">0 아닌 칸 비율</span><span class="v" id="mk-sparse">—</span></div>
-        <div class="stat"><span class="k">엔트로피율 (온도 T)</span><span class="v" id="mk-h">—</span></div>
+        <div class="stat"><span class="k">학습 문맥 가중 조건부 엔트로피 (온도 T)</span><span class="v" id="mk-h">—</span></div>
         <div class="stat"><span class="k">학습 곡과 같은 5음 조각</span><span class="v" id="mk-copy">—</span></div>
       </div>
       <div class="sim-note">위: 전이 행렬 히트맵. 행은 문맥(1차면 바로 앞 음), 열은 다음 음이고, 진할수록 확률이 큽니다. 재생 중에는 지금 쓰인 문맥 행과 고른 열이 강조됩니다. 아래: 생성된 선율. 해볼 것: ① 1차 → 3차로 올리며 '학습 곡과 같은 5음 조각' 비율이 치솟는 것(과적합) 확인. ② 온도를 0 근처로 내리면 같은 고리를 맴도는 것, 3 가까이 올리면 학습 곡의 색채가 흐려지는 것. 모델: 음높이와 리듬을 따로 학습합니다(음높이는 n차, 음 길이는 1차 체인). 학습에 없던 문맥에 도달하면 한 차수 낮은 모델로 물러납니다(백오프). 선율 시작은 학습 곡 하나의 첫 n음입니다.</div>
@@ -311,8 +311,8 @@
       <div class="where">랜덤 워크 \(x_t = x_{t-1} + \varepsilon_t\)는 백색 잡음을 적분한 것이므로 전달함수 \(|H(f)|^2 \propto 1/f^2\)이다. \(1/f\)는 그 중간으로, 모든 시간 척도(옥타브 대역)에 같은 에너지를 가진다. 짧게 보면 들쭉날쭉하고 길게 보면 흐름이 있는 성질이다.</div>
     </div>
     <p>\(1/f\) 수열을 만드는 가장 유명한 방법은 마틴 가드너가 1978년 <i>Scientific American</i> 칼럼에 소개한 보스의 주사위 알고리즘입니다. 주사위 \(K\)개를 두고, 2진 카운터의 \(k\)번째 비트가 바뀔 때마다 \(k\)번째 주사위를 다시 굴려 합을 출력합니다. 느린 주사위는 긴 시간 척도의 변동을, 빠른 주사위는 짧은 척도의 변동을 담당합니다. 매 단계 주사위 하나만 굴리도록 개선한 것이 <b>보스–매카트니</b><span class="en">(Voss–McCartney)</span> 알고리즘입니다.</p>
-    <div class="formula">$$x_t = \sum_{k=0}^{K-1} r_k\!\left(\left\lfloor t/2^{k}\right\rfloor\right), \qquad \text{단계 } t\text{에서 다시 굴리는 주사위: } k = \operatorname{ctz}(t)$$
-      <div class="where">\(r_k(\cdot)\): 독립 균일 난수열(값이 바뀔 때만 새로 뽑음). \(\operatorname{ctz}\): 2진수 끝자리 0의 개수(count trailing zeros). 각 주사위는 주기 \(2^k\)짜리 계단 신호이고, 그 스펙트럼들을 옥타브마다 하나씩 겹쳐 쌓으면 \(K\)옥타브 범위에서 \(1/f\)에 근사한다.</div>
+    <div class="formula">$$x_t = \sum_{k=0}^{K-1} r_k\!\left(\left\lfloor t/2^{k}\right\rfloor\right), \qquad (\text{원 Voss 방식: 인수가 바뀐 모든 행 갱신})$$
+      <div class="where">\(r_k(\cdot)\): 독립 균일 난수열(값이 바뀔 때만 새로 뽑음). \(\operatorname{ctz}\): 2진수 끝자리 0의 개수(count trailing zeros). 위 합산식의 각 행은 \(2^k\)마다 갱신된다. 이 실험의 McCartney 개선 방식은 t≥1에서 k=ctz(t)의 한 행만 갱신하며, 해당 행의 갱신 간격은 \(2^{k+1}\)이다. 유한 K에서 최고 행을 제한하고 별도 백색 난수를 더한다. 이 계단 신호들의 스펙트럼을 옥타브마다 하나씩 겹쳐 쌓으면 \(K\)옥타브 범위에서 \(1/f\)에 근사한다.</div>
     </div>
 
     <div class="sim" id="sim-mel-noise">

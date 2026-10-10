@@ -129,7 +129,7 @@
     ["포먼트", "Formant", "음높이와 무관하게 고정된 공명 대역. 모음과 악기의 특징을 만든다.", "harmonics"],
     ["스펙트럼 무게중심", "Spectral Centroid", "에너지 가중 평균 주파수. 소리의 '밝기'와 상관이 높다.", "harmonics"],
     // 03 악기
-    ["정상파", "Standing Wave", "양 끝이 고정된 현이나 관에서 진행파와 반사파가 겹쳐 생기는 진동 모드. f_n = n·v/2L.", "instruments"],
+    ["정상파", "Standing Wave", "반대 방향 파가 겹쳐 마디·배가 공간에 고정된 진동. 양끝 고정 현은 f_n=n·v/(2L). 끝 보정을 생략한 양쪽 열린 관은 n·c/(2L), 한쪽 닫힌 관은 (2n−1)c/(4L). 관의 열린 끝은 압력 마디, 닫힌 끝은 압력 배다.", "instruments"],
     ["카플러스–스트롱", "Karplus–Strong", "잡음으로 채운 지연선을 평균 필터로 되먹임해 뜯은 현을 흉내 내는 알고리즘(1983).", "instruments", "pluck"],
     ["비조화성", "Inharmonicity", "부분음이 정수배에서 벗어나는 정도. 피아노 현은 강성 때문에 f_n = n f₀√(1+Bn²).", "instruments"],
     ["스트레치 튜닝", "Stretch Tuning", "피아노 비조화성 때문에 고음은 약간 높게, 저음은 약간 낮게 조율하는 관행(레일스백 곡선).", "instruments"],
@@ -142,7 +142,7 @@
     ["레조넌스", "Resonance (Q)", "컷오프 근처를 강조하는 필터의 공진. 높이면 '뾰옹' 하는 특유의 소리가 난다.", "synthesis"],
     ["LFO", "Low-Frequency Oscillator", "가청 주파수보다 느린 발진기. 비브라토·트레몰로 등 변조에 쓴다.", "synthesis"],
     ["FM 합성", "Frequency Modulation Synthesis", "발진기의 주파수를 다른 발진기로 변조. 측파대가 f_c ± n·f_m에 생긴다(차우닝, 1973).", "synthesis", "fm"],
-    ["링 변조", "Ring Modulation", "두 신호의 곱. 합·차 주파수만 남아 금속성 소리가 난다.", "synthesis"],
+    ["링 변조", "Ring Modulation", "두 신호의 곱. DC 없는 단일 사인파 두 개면 합·차 주파수가 생긴다. 복합음은 성분의 모든 쌍에 합·차가 생기고 DC가 있으면 입력 성분도 남을 수 있다. 금속성 청감은 입력에 따라 달라진다.", "synthesis"],
     ["변조 지수", "Modulation Index", "FM에서 주파수 편이 Δf / 변조 주파수 f_m. 클수록 측파대가 많아진다.", "synthesis"],
     // 05 조율
     ["옥타브", "Octave", "주파수비 2:1의 음정. 다른 높이지만 '같은 음'으로 들린다(옥타브 동치).", "tuning", "iv:12"],
@@ -168,7 +168,7 @@
     ["장음계", "Major Scale", "온–온–반–온–온–온–반 간격의 7음계. 5도 6번을 쌓은 '최대로 고른' 집합.", "scales", "sc:major"],
     ["자연단음계", "Natural Minor", "장음계를 6번째 음부터 시작한 선법(에올리안).", "scales", "sc:minor"],
     ["선법", "Mode", "같은 음 집합을 다른 음에서 시작해 얻는 음계. 도리안, 리디안 등 7가지.", "scales", "sc:dorian"],
-    ["5음음계", "Pentatonic Scale", "5음으로 된 음계. 장음계의 여집합(검은 건반)이며 반음이 없다.", "scales", "sc:majorPent"],
+    ["5음음계", "Pentatonic Scale", "5음으로 된 음계. C장음계의 여집합인 검은 건반은 F♯ 장조 5음 집합이다. 듣기 예의 C·D·E·G·A와는 이조 관계이며, 장조 5음음계는 반음이 없다.", "scales", "sc:majorPent"],
     ["블루스 음계", "Blues Scale", "단조 5음음계에 ♭5를 더한 6음계.", "scales", "sc:blues"],
     ["온음음계", "Whole-tone Scale", "온음만으로 된 6음계. 전위가 2가지뿐인 대칭 음계.", "scales", "sc:wholeTone"],
     ["5도권", "Circle of Fifths", "완전 5도씩 12음을 원으로 늘어놓은 것. 이웃한 조는 음 6개를 공유한다.", "scales"],

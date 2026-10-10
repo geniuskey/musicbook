@@ -44,7 +44,7 @@
     <p class="lead">마이크는 압력을 선형으로 재지만, 귀는 그렇지 않습니다. 같은 60 dB라도 50 Hz는 1 kHz보다 훨씬 작게 들리고, 큰 소리 바로 옆의 작은 소리는 사라지며, 끝없이 올라가기만 하는 음이 존재합니다. <span class="term">심리음향</span><span class="en">(Psychoacoustics)</span>은 물리량(Hz, dB, 초)과 지각량(음높이, 크기, 방향) 사이의 전달함수를 측정하는 학문입니다. MP3와 AAC는 이 전달함수의 '빈틈'에 비트를 버려서 파일을 1/10로 줄입니다. 이 장에서는 그 빈틈을 직접 듣고 측정합니다.</p>
     <ul class="objectives">
       <li>외이·중이·달팽이관을 공진기·임피던스 정합기·필터뱅크로 보는 신호 처리 모델을 설명한다.</li>
-      <li>ISO 226:2003 등청감 곡선, 폰과 손, A-가중의 의미와 한계를 안다.</li>
+      <li>현행 ISO 226:2023과 예제의 2003판 등청감 곡선, 폰과 손, A-가중의 의미와 한계를 안다.</li>
       <li>임계대역(ERB·바크)과 동시·시간 마스킹을 설명하고, 마스킹 확산 함수로 들림 여부를 예측한다.</li>
       <li>적응형 계단법(2-down-1-up)으로 자신의 주파수·세기 JND를 측정한다.</li>
       <li>셰퍼드 톤·리세 글리산도·트라이톤 역설로 음높이의 '높이'와 '음색(크로마)'이 분리됨을 듣는다.</li>
@@ -60,7 +60,7 @@
     <p>소리가 신경 신호가 되기까지 세 단계의 기계 장치를 지납니다. <b>외이</b>(귓바퀴·외이도)는 한쪽이 막힌 약 2.5 cm 관이라 \(\lambda/4\) 공진 \(f = c/4L \approx 343/(4\times0.025) \approx 3.4\) kHz 근처를 10–15 dB 증폭합니다. 사람의 청각이 2–5 kHz에서 가장 예민하고, 아기 울음·자음의 에너지가 이 대역에 있는 것은 우연이 아닙니다. <b>중이</b>(고막–이소골)는 공기(낮은 임피던스)에서 림프액(높은 임피던스)으로 에너지를 넘기는 <span class="term">임피던스 정합기</span>입니다. 고막과 난원창의 면적비 약 17배, 이소골 지렛대 약 1.3배로 압력을 약 22배(≈27 dB) 키웁니다. 이것이 없으면 공기–물 경계에서 에너지의 99.9%가 반사됩니다.</p>
     <p><b>내이</b>(달팽이관)의 기저막은 밑동이 좁고 단단하며 꼭대기로 갈수록 넓고 유연해서, 주파수마다 최대로 진동하는 위치가 다릅니다—<span class="term">토노토피</span><span class="en">(Tonotopy)</span>. 공학적으로는 수천 개의 겹치는 대역통과 필터로 이루어진 <b>필터뱅크</b>이며, 각 필터의 대역폭이 바로 임계대역(ERB)입니다. 위치와 주파수의 관계는 그린우드 함수로 근사됩니다.</p>
     <div class="formula">$$f(x) = 165.4\left(10^{2.1x} - 0.88\right)\ \text{Hz},\qquad x\in[0,1]\ (\text{꼭대기}=0,\ \text{밑동}=1)$$
-      <div class="where">사람의 기저막 약 35 mm. \(x=1\)에서 약 20.7 kHz, \(x=0\)에서 약 20 Hz. 로그에 가까운 배치이므로 옥타브마다 대략 같은 길이(약 3.5 mm)를 차지한다—음높이의 로그 지각(5장)의 생리적 바탕이다. 내유모세포는 기저막 운동을 반파 정류·압축해 신경 발화로 바꾸고, 외유모세포는 능동 증폭기(약 40–50 dB)로 작은 소리의 감도와 필터의 날카로움을 높인다.</div>
+      <div class="where">사람의 기저막 약 35 mm. \(x=1\)에서 약 20.7 kHz, \(x=0\)에서 약 20 Hz. 로그에 가까운 배치이므로 고주파에서는 옥타브당 약 5.0 mm에 가까워진다. 같은 식에서 1→2 kHz는 약 4.54 mm, 100→200 Hz는 약 2.47 mm로 저주파에서는 길이가 달라진다—음높이의 로그 지각(5장)의 생리적 바탕이다. 내유모세포는 기저막 운동을 반파 정류·압축해 신경 발화로 바꾸고, 외유모세포는 능동 증폭기(약 40–50 dB)로 작은 소리의 감도와 필터의 날카로움을 높인다.</div>
     </div>
     <figure class="diagram">
       <svg viewBox="0 0 800 250" role="img" aria-label="청각 신호 처리 체인"><g id="psy-fig-chain"></g></svg>
@@ -71,7 +71,7 @@
   <!-- =============================================================== 2 -->
   <section id="loudness">
     <h2>소리의 크기: 등청감 곡선, 폰과 손</h2>
-    <p>물리적 음압 레벨 \(L_p = 20\log_{10}(p/20\,\mu\text{Pa})\) dB SPL이 같아도 주파수에 따라 크기가 다르게 들립니다. 1 kHz 순음과 같은 크기로 들리는 음압을 주파수별로 이은 곡선이 <span class="term">등청감 곡선</span><span class="en">(Equal-loudness Contour)</span>이고, 그 크기를 1 kHz에서의 dB SPL 값으로 부른 단위가 <b>폰</b>(phon)입니다. 1933년 플레처–먼슨 곡선이 원조이고, 현행 국제 표준은 여러 나라 실험을 통합한 <b>ISO 226:2003</b>(2023년 개정판도 거의 같음)입니다.</p>
+    <p>물리적 음압 레벨 \(L_p = 20\log_{10}(p/20\,\mu\text{Pa})\) dB SPL이 같아도 주파수에 따라 크기가 다르게 들립니다. 1 kHz 순음과 같은 크기로 들리는 음압을 주파수별로 이은 곡선이 <span class="term">등청감 곡선</span><span class="en">(Equal-loudness Contour)</span>이고, 그 크기를 1 kHz에서의 dB SPL 값으로 부른 단위가 <b>폰</b>(phon)입니다. 1933년 플레처–먼슨 곡선이 원조이고, 현행 국제 표준은 여러 나라 실험을 통합한 <b>ISO 226:2023</b>입니다. 아래 계산은 2003판 데이터를 사용하는 교육용 근사이며 두 판의 차이는 최대 약 0.6 dB로 보고됩니다. 표준은 정상 청력의 18–25세, 정면 자유음장, 양이 순음 청취 조건을 기준으로 합니다. 헤드폰·모든 연령의 개인별 교정값은 아닙니다. 현행판 안내는 <a href="https://www.iso.org/standard/83117.html">ISO</a>에서 확인할 수 있습니다.</p>
     <div class="formula">$$A_f = 4.47\times10^{-3}\left(10^{0.025L_N}-1.15\right) + \left[0.4\times10^{\left(\frac{T_f+L_U}{10}-9\right)}\right]^{\alpha_f},\qquad L_p = \frac{10}{\alpha_f}\log_{10}A_f - L_U + 94$$
       <div class="where">ISO 226:2003의 계산식. \(L_N\): 폰 값, \(T_f\): 가청 한계(dB), \(\alpha_f\): 크기 지각의 지수, \(L_U\): 1 kHz로 정규화한 전달함수 크기(dB). 세 매개변수는 29개 주파수(20 Hz–12.5 kHz)의 표로 주어진다. 20–90 폰(10 kHz 이상은 80 폰)에서 유효.</div>
     </div>
@@ -80,7 +80,7 @@
     <div class="formula">$$R_A(f) = \frac{12194^2 f^4}{(f^2+20.6^2)\sqrt{(f^2+107.7^2)(f^2+737.9^2)}\,(f^2+12194^2)},\qquad A(f) = 20\log_{10}R_A(f) + 2.00\ \text{dB}$$</div>
 
     <div class="sim" id="sim-psy-loud">
-      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>등청감 곡선 탐색기 (ISO 226:2003)</h3></div>
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>등청감 곡선 탐색기 (ISO 226:2003 데이터; 현행판 2023)</h3></div>
       <div class="sim-body side">
         <div class="sim-view"><canvas id="cv-psy-loud"></canvas></div>
         <div class="sim-controls">
@@ -137,10 +137,10 @@
       </div>
       <div class="sim-note">방법: 마스커를 켜고 프로브(0.25초 켜짐/꺼짐 반복)를 켠 뒤, 프로브 레벨을 내리며 '삐-삐'가 사라지는 지점을 찾으세요. 그 지점이 당신의 마스킹 문턱입니다. 그래프: 가로 바크 축(아래 숫자는 Hz), 회색 점선 = 절대 가청 한계(터하르트 근사), 보라 면 = 모델 1 마스킹 문턱, 초록/빨강 점 = 프로브(문턱 위/아래). 해볼 것: ① 프로브를 마스커보다 위(고주파)와 아래에 같은 Bark 거리로 두고 비교 → 위쪽이 더 잘 가려짐. ② 마스커 레벨을 85 dB로 올리면 위쪽 꼬리가 길어짐(상향 확산). 잡음은 마스커 중심 1 임계대역 폭의 대역통과 잡음입니다.</div>
     </div>
-    <p><span class="term">시간 마스킹</span><span class="en">(Temporal Masking)</span>도 있습니다. 큰 소리가 끝난 뒤 약 100–200 ms 동안 작은 소리가 잘 들리지 않고(<b>후방 마스킹</b>), 놀랍게도 큰 소리 <b>직전</b> 약 5–20 ms의 소리도 가려집니다(<b>전방 마스킹</b>, 큰 소리의 신경 처리가 더 빨라 앞선 약한 신호를 덮어쓴다고 설명). AAC의 짧은 블록 전환과 '프리에코' 문제는 이 짧은 전방 마스킹 창과 관련이 있습니다.</p>
+    <p><span class="term">시간 마스킹</span><span class="en">(Temporal Masking)</span>도 있습니다. 큰 소리가 끝난 뒤 약 100–200 ms 동안 작은 소리가 잘 들리지 않고(<b>전방 마스킹, forward masking</b>), 놀랍게도 큰 소리 <b>직전</b> 약 5–20 ms의 소리도 가려집니다(<b>후방 마스킹, backward masking</b>, 큰 소리의 신경 처리가 더 빨라 앞선 약한 신호를 덮어쓴다고 설명). AAC의 짧은 블록 전환과 '프리에코' 문제는 이 짧은 후방 마스킹 창과 관련이 있습니다.</p>
     <figure class="diagram">
       <svg viewBox="0 0 800 220" role="img" aria-label="시간 마스킹"><g id="psy-fig-temporal"></g></svg>
-      <figcaption><b>그림 14-2.</b> 시간 마스킹의 개략도(Zwicker &amp; Fastl의 그림을 단순화). 마스커(200 ms) 전 수십 ms의 전방 마스킹과, 끝난 뒤 약 200 ms에 걸쳐 지수적으로 줄어드는 후방 마스킹. 세로: 프로브가 들리기 위한 레벨.</figcaption>
+      <figcaption><b>그림 14-2.</b> 시간 마스킹의 개략도(Zwicker &amp; Fastl의 그림을 단순화). 마스커(200 ms) 전 수십 ms의 후방 마스킹과, 끝난 뒤 약 200 ms에 걸쳐 지수적으로 줄어드는 전방 마스킹. 세로: 프로브가 들리기 위한 레벨.</figcaption>
     </figure>
   </section>
 
@@ -296,7 +296,7 @@
     <h2>핵심 정리</h2>
     <ol>
       <li>외이는 약 3 kHz 공진기, 중이는 약 27 dB 임피던스 정합기, 달팽이관은 로그 간격 필터뱅크(그린우드 함수)다.</li>
-      <li>등청감 곡선(ISO 226:2003): 저음과 초고음은 같은 dB SPL에서 훨씬 작게 들리고, 레벨이 클수록 곡선이 평평해진다. 10 폰 ≈ 크기 두 배(손), A-가중 ≈ 40 폰 곡선의 뒤집기.</li>
+      <li>등청감 곡선(현행 ISO 226:2023; 예제는 2003판 데이터): 저음과 초고음은 같은 dB SPL에서 훨씬 작게 들리고, 레벨이 클수록 곡선이 평평해진다. 10 폰 ≈ 크기 두 배(손), A-가중 ≈ 40 폰 곡선의 뒤집기.</li>
       <li>임계대역(ERB = 24.7(4.37f/1000+1), 바크)이 거칠기·마스킹·코덱 대역 분할의 기본 단위다.</li>
       <li>마스킹은 바크 축에서 위쪽으로 더 넓게 퍼지고(상향 확산), 마스커가 클수록 더 퍼진다. 큰 소리 전 약 20 ms, 뒤 약 200 ms도 가려진다. MP3/AAC는 양자화 잡음을 이 문턱 아래에 숨긴다.</li>
       <li>주파수 JND는 중간 음역에서 약 0.2–0.5%(3–9 ¢), 세기 JND는 약 0.5–1 dB. 2-down-1-up 계단법은 70.7% 정답점을 추정한다.</li>
@@ -402,8 +402,8 @@ function psyTone(f, amp, o = {}) {
   for (let t = -40; t <= 0; t += 2) { const d = 60 * Math.exp((t) / 8); pre += (pre ? " L" : "M") + X(t).toFixed(1) + "," + Y(d).toFixed(1); }
   for (let t = 200; t <= 400; t += 4) { const d = 60 * Math.exp(-(t - 200) / 45); post += (post ? " L" : "M") + X(t).toFixed(1) + "," + Y(d).toFixed(1); }
   s += `<path d="${pre}" class="s-acc" style="stroke-width:2.5"/><path d="${post}" class="s-acc" style="stroke-width:2.5"/>`;
-  s += `<text x="${X(-30)}" y="${Y(68)}" text-anchor="middle" class="t-acc">전방</text><text x="${X(-30)}" y="${Y(60)}" text-anchor="middle" class="t-dim" style="font-size:11px">~20 ms</text>`;
-  s += `<text x="${X(290)}" y="${Y(40)}" class="t-acc">후방 마스킹</text><text x="${X(290)}" y="${Y(32)}" class="t-dim" style="font-size:11px">~100–200 ms</text>`;
+  s += `<text x="${X(-30)}" y="${Y(68)}" text-anchor="middle" class="t-acc">후방</text><text x="${X(-30)}" y="${Y(60)}" text-anchor="middle" class="t-dim" style="font-size:11px">~20 ms</text>`;
+  s += `<text x="${X(290)}" y="${Y(40)}" class="t-acc">전방 마스킹</text><text x="${X(290)}" y="${Y(32)}" class="t-dim" style="font-size:11px">~100–200 ms</text>`;
   [-50, 0, 100, 200, 300, 400].forEach((t) => (s += `<text x="${X(t)}" y="198" text-anchor="middle" class="t-mono">${t}</text>`));
   s += `<text x="${X(175)}" y="214" text-anchor="middle" class="t-dim">시간 (ms)</text><text x="16" y="100" class="t-dim" transform="rotate(-90 16 100)" text-anchor="middle">프로브 문턱 상승 (dB)</text>`;
   g.innerHTML = s;
@@ -663,7 +663,7 @@ function psyTone(f, amp, o = {}) {
     [pc, pc + 6].forEach((c, i) => {
       for (let k = 0; k < K; k++) { const pk = MB.mod(k + c / 12, K), a = Math.exp(-((pk - PC) ** 2) / (2 * 1.0 ** 2)); if (a < 0.01) continue; pair.push(psyTone(FMIN * Math.pow(2, pk), 0.09 * a, { when: t + i * 0.6, dur: 0.5, ramp: 0.03 })); }
     });
-    MB.stat("ps-pair", `${MB.pcName(pc)} → ${MB.pcName(pc + 6)} <small>위? 아래?</small>`);
+    MB.stat("ps-pair", `${MB.pcName(pc + 9)} → ${MB.pcName(pc + 15)} <small>위? 아래?</small>`);
   });
   const cv = MB.canvas("#cv-psy-shep", (ctx, w, h) => {
     const P = MB.palette(), ph = eng ? phiAt(MB.now()) : (hist.length ? hist[hist.length - 1].phi : 0);

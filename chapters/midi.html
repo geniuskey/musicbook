@@ -106,7 +106,7 @@
         <div class="stat"><span class="k">마지막 음 지연</span><span class="v" id="sm-last">—</span></div>
         <div class="stat"><span class="k">러닝 스테이터스 절약</span><span class="v" id="sm-save">—</span></div>
       </div>
-      <div class="sim-note">위 막대는 케이블 위를 지나는 바이트(보라=상태, 회색=데이터)이고, 아래 점은 각 노트 온 메시지가 <b>완전히 도착해</b> 수신기가 소리를 낼 수 있는 시각입니다. 실제 배율(×1)에서 8음 화음의 번짐(약 5 ms)은 대부분 '조금 부드러운 어택' 정도로 들리지만, ×5–×20으로 늘이면 아르페지오처럼 흩어지는 것이 분명히 들립니다. 사람이 두 클릭의 순서를 구분하는 한계가 대략 수 ms–20 ms라서, 큰 화음과 드럼이 겹치는 순간 MIDI 1.0의 직렬 지연은 실제로 문제가 되었습니다. USB-MIDI는 1 ms 프레임 안에 여러 메시지를 묶어 보내므로 번짐 대신 최대 1 ms의 지터가 생깁니다.</div>
+      <div class="sim-note">위 막대는 케이블 위를 지나는 바이트(보라=상태, 회색=데이터)이고, 아래 점은 각 노트 온 메시지가 <b>완전히 도착해</b> 수신기가 소리를 낼 수 있는 시각입니다. 실제 배율(×1)에서 8음 화음의 번짐(약 5 ms)은 대부분 '조금 부드러운 어택' 정도로 들리지만, ×5–×20으로 늘이면 아르페지오처럼 흩어지는 것이 분명히 들립니다. 사람이 두 클릭의 순서를 구분하는 한계가 대략 수 ms–20 ms라서, 큰 화음과 드럼이 겹치는 순간 MIDI 1.0의 직렬 지연은 실제로 문제가 되었습니다. 아래 USB-MIDI 그림은 1 ms 프레임 묶음을 가정한 단순 모형입니다. USB-MIDI 1.0의 벌크 전송은 지연 상한을 예약하지 않으며 장치·드라이버·OS 버퍼링을 포함한 지터가 1 ms 이하라고 보장하지 않습니다.</div>
     </div>
   </section>
 
@@ -138,7 +138,7 @@
     <div class="formula">$$f(n) = 440 \cdot 2^{(n-69)/12}\ \text{Hz}, \qquad n = 69 + 12\log_2\frac{f}{440}$$
       <div class="where">60번을 이 책처럼 C4라 부르는 것이 과학적 음높이 표기(SPN)지만, 야마하 계열 장비와 일부 DAW는 60번을 <b>C3</b>로 표시한다. 같은 바이트 0x3C에 이름만 한 옥타브 다르게 붙는 것이라, 장비 설명서를 볼 때 늘 확인해야 한다.</div>
     </div>
-    <p><b>벨로시티</b>는 건반이 눌린 속도(대개 두 접점 사이 통과 시간)를 1–127로 양자화한 값입니다. 규격은 세기→음량 곡선을 정하지 않지만, 흔히 진폭을 \((v/127)^2\)에 비례하게(약 \(40\log_{10}(v/127)\) dB) 둡니다. 이 장의 합성기도 그렇게 합니다.</p>
+    <p><b>벨로시티</b>는 건반이 눌린 속도(대개 두 접점 사이 통과 시간)를 1–127로 양자화한 값입니다. 규격은 세기→음량 곡선을 정하지 않지만, 흔히 진폭을 \((v/127)^2\)에 비례하게(약 \(40\log_{10}(v/127)\) dB) 둡니다. 이 장의 멜로디 합성기는 확인하기 쉬운 소리를 위해 피크 이득 0.28(v/127)²+0.015를 사용하므로 순수 제곱 곡선과 달리 작은 벨로시티에도 바닥 이득이 있습니다.</p>
 
     <div class="sim" id="sim-midi-monitor">
       <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>MIDI 메시지 모니터</h3></div>
@@ -297,7 +297,7 @@
       </div>
       <div class="sim-note">마스터는 4분음표마다 킥을 정확한 시각에 칩니다. 슬레이브는 F8을 지터가 섞인 시각에 받고, 6틱(16분음표)마다 하이햇을 칩니다. 그래프는 최근 4초의 템포 추정입니다: 흐린 점=틱 하나의 간격으로 계산한 순간값, 보라=24틱(한 박) 이동평균, 청록=지수 평활(α=0.05). 마스터 템포를 재생 중에 바꿔 보면 평활 추정이 늦게 따라오는 것(지연)이 보입니다. 지터를 8 ms 이상으로 올리면 하이햇이 비틀거리는 것이 들립니다. 아래 줄은 케이블에 흐르는 바이트입니다.</div>
     </div>
-    <div class="callout deep"><strong>타임코드와 정밀도</strong> 영상과 맞출 때는 박이 아니라 절대 시각이 필요해 MTC(MIDI Time Code, <code>F1</code> 쿼터 프레임)로 SMPTE 시:분:초:프레임을 보낸다. 하나의 시각을 8개 쿼터 프레임에 나눠 보내므로 2프레임마다 완전한 시각이 갱신된다. 오늘날 스튜디오의 샘플 단위 동기는 워드 클럭이나 네트워크 오디오(AES67, PTP/IEEE 1588)가 맡고, MIDI 클럭은 박 단위 음악 동기에 남아 있다. MIDI 2.0은 메시지마다 타임스탬프(JR Timestamp)를 붙여 지터 문제를 근본적으로 다룬다.</div>
+    <div class="callout deep"><strong>타임코드와 정밀도</strong> 영상과 맞출 때는 박이 아니라 절대 시각이 필요해 MTC(MIDI Time Code, <code>F1</code> 쿼터 프레임)로 SMPTE 시:분:초:프레임을 보낸다. 하나의 시각을 8개 쿼터 프레임에 나눠 보내므로 2프레임마다 완전한 시각이 갱신된다. 오늘날 스튜디오의 샘플 단위 동기는 워드 클럭이나 네트워크 오디오(AES67, PTP/IEEE 1588)가 맡고, MIDI 클럭은 박 단위 음악 동기에 남아 있다. UMP의 JR Clock·JR Timestamp는 선택 기능이며 MIDI 1.0·2.0 메시지에 모두 적용할 수 있다. 송수신 지원·시계 해석·예약 재생이 있어야 지터를 줄일 수 있고 고정 지연·장치 동기까지 자동 해결하지는 않는다.</div>
   </section>
 
   <!-- =============================================================== 6 -->
@@ -434,7 +434,7 @@
       <tbody>
         <tr><td>단위</td><td>바이트 스트림</td><td>MIDI 1.0 메시지 그대로</td><td>UMP(Universal MIDI Packet) 32/64/96/128비트</td><td>UDP/TCP 패킷, 주소 경로 <code>/synth/1/freq</code></td></tr>
         <tr><td>세기·컨트롤 해상도</td><td>7비트 (벤드만 14)</td><td>7/14비트</td><td>세기 16비트, CC·벤드 32비트</td><td>32비트 정수/실수 등 형식 지정</td></tr>
-        <tr><td>음 하나만 굽히기</td><td>불가(채널 단위)</td><td>음마다 채널 하나씩 배정(멤버 채널 2–16), 벤드 범위 기본 ±48반음</td><td>노트별 피치 벤드·노트별 컨트롤러</td><td>주소 설계에 달림</td></tr>
+        <tr><td>음 하나만 굽히기</td><td>불가(채널 단위)</td><td>음마다 채널 하나씩 배정(단일 Lower Zone은 마스터 1·멤버 2–16, 단일 Upper Zone은 마스터 16·멤버 15부터 감소; 두 존 사용 시 각각 마스터 예약), 벤드 범위 기본 ±48반음</td><td>노트별 피치 벤드·노트별 컨트롤러</td><td>주소 설계에 달림</td></tr>
         <tr><td>채널</td><td>16</td><td>존(zone)당 15음</td><td>16그룹 × 16 = 256</td><td>제한 없음</td></tr>
         <tr><td>양방향</td><td>아니오(SysEx 관례)</td><td>아니오</td><td>MIDI-CI로 기능 협상·프로파일·속성 교환</td><td>네트워크 그대로</td></tr>
       </tbody>
@@ -599,7 +599,8 @@ function MdSynth() {
     for (let c = 0; c < 16; c++) {
       const vol = ctx.createGain(); vol.gain.value = (100 / 127) ** 2; const pan = ctx.createStereoPanner(); vol.connect(pan); pan.connect(master);
       const lg = ctx.createGain(); lg.gain.value = 0; lfo.connect(lg);
-      ch.push({ vol, pan, lg, bend: 0, range: 2, sus: false, prog: 0, mod: 0, press: 0, voices: new Map(), held: new Set(), rpn: [127, 127] });
+      const soundOut = ctx.createGain(); soundOut.connect(vol);
+      ch.push({ vol, pan, lg, soundOut, bend: 0, range: 2, sus: false, prog: 0, mod: 0, press: 0, voices: new Map(), held: new Set(), rpn: [127, 127] });
     }
     return true;
   }
@@ -609,15 +610,24 @@ function MdSynth() {
     const g = v.g.gain; if (g.cancelAndHoldAtTime) g.cancelAndHoldAtTime(t); else { g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); }
     g.setTargetAtTime(0, t, v.r / 4); try { v.o.stop(t + v.r * 2 + 0.05); } catch (e) {}
   }
+  function soundOff(c, t) {
+    const C = ch[c];
+    // Silence the old channel bus, including release tails and one-shot drums.
+    C.soundOut.gain.cancelScheduledValues(t); C.soundOut.gain.setValueAtTime(0, t);
+    C.voices.forEach((v) => { try { v.o.stop(t); } catch (e) {} });
+    C.voices.clear(); C.held.clear();
+    // New notes use a fresh bus; controller volume and pedal state are retained.
+    C.soundOut = ctx.createGain(); C.soundOut.connect(C.vol);
+  }
   function on(c, n, vel, t) {
     const C = ch[c];
-    if (c === 9) { const nm = MD_DRUM[n]; if (nm) MB.drum(nm, t, { vel: Math.min(1, 0.2 + 0.8 * (vel / 127) ** 1.5), dest: C.vol }); return; }
+    if (c === 9) { const nm = MD_DRUM[n]; if (nm) MB.drum(nm, t, { vel: Math.min(1, 0.2 + 0.8 * (vel / 127) ** 1.5), dest: C.soundOut }); return; }
     off(c, n, t); C.held.delete(n);
     const F = fam(C), o = ctx.createOscillator(); o.type = F.type; o.frequency.value = MB.mtof(n); o.detune.setValueAtTime(C.bend, t); C.lg.connect(o.detune);
     const f = ctx.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = F.cut * (0.45 + 0.75 * vel / 127); f.Q.value = 0.7;
     const g = ctx.createGain(), pk = 0.28 * (vel / 127) ** 2 + 0.015;
     g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(pk, t + F.a); g.gain.setTargetAtTime(pk * F.s, t + F.a, F.d / 3);
-    o.connect(f); f.connect(g); g.connect(C.vol); o.start(t);
+    o.connect(f); f.connect(g); g.connect(C.soundOut); o.start(t);
     o.onended = () => { try { C.lg.disconnect(o.detune); } catch (e) {} try { g.disconnect(); } catch (e) {} };
     C.voices.set(n, { o, g, r: F.r });
     if (C.voices.size > 24) off(c, C.voices.keys().next().value, t);
@@ -637,7 +647,8 @@ function MdSynth() {
           else if (d1 === 64) { C.sus = d2 >= 64; if (!C.sus) { C.held.forEach((n) => off(c, n, t)); C.held.clear(); } }
           else if (d1 === 101) C.rpn[0] = d2; else if (d1 === 100) C.rpn[1] = d2;
           else if (d1 === 6 && C.rpn[0] === 0 && C.rpn[1] === 0) C.range = d2;
-          else if (d1 === 120 || d1 === 123) { [...C.voices.keys()].forEach((n) => off(c, n, t)); C.held.clear(); }
+          else if (d1 === 120) soundOff(c, t);
+          else if (d1 === 123) { if (C.sus) C.voices.forEach((v, n) => C.held.add(n)); else { [...C.voices.keys()].forEach((n) => off(c, n, t)); C.held.clear(); } }
           else if (d1 === 121) { C.mod = 0; C.press = 0; C.sus = false; C.bend = 0; lfoSet(C, t); C.voices.forEach((v) => v.o.detune.setValueAtTime(0, t)); }
           break;
         case 0xc0: C.prog = d1; break;
@@ -713,7 +724,7 @@ const mdEsc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
     for (let ms = 0; ms * 1000 <= Tmax; ms += 2) { const x = X(ms * 1000); ctx.strokeStyle = P.grid; ctx.beginPath(); ctx.moveTo(x, box.y + box.h + 4); ctx.lineTo(x, y2 + 4); ctx.stroke(); ctx.fillStyle = P.dim; ctx.textAlign = "center"; ctx.font = MD_FONT(10, true); ctx.fillText(ms + "ms", x, y2 + 16); }
     arrive.forEach((us, k) => { const x = X(us); ctx.fillStyle = anim && anim.k > k ? P.warn : P.accent2; ctx.beginPath(); ctx.arc(x, y2 - 8 - (k % 3) * 9, 4, 0, 7); ctx.fill(); });
     ctx.fillStyle = P.dim; ctx.textAlign = "left"; ctx.font = MD_FONT(11); ctx.fillText("각 노트 온의 도착 시각 (점)", box.x, y2 + 36);
-    ctx.fillStyle = P.dim; ctx.fillText("USB-MIDI: 1 ms 프레임 하나에 묶여 도착 →", box.x, y2 + 58);
+    ctx.fillStyle = P.dim; ctx.fillText("USB-MIDI 단순 모형: 1 ms 묶음 (실제 지터 상한 아님) →", box.x, y2 + 58);
     ctx.fillStyle = P.accent2; ctx.globalAlpha = 0.35; ctx.fillRect(X(0), y2 + 66, X(1000) - X(0), 12); ctx.globalAlpha = 1;
     if (anim) { ctx.strokeStyle = P.warn; ctx.lineWidth = 2; const x = X(anim.us); ctx.beginPath(); ctx.moveTo(x, box.y - 4); ctx.lineTo(x, y2); ctx.stroke(); }
   }, { aspect: (w) => (w < 500 ? 0.62 : 0.34), minHeight: 190, maxHeight: 240 });

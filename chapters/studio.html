@@ -86,11 +86,12 @@
       <svg viewBox="0 0 800 300" role="img" aria-label="작업실 신호 흐름">
         <g id="std-fig-flow"></g>
       </svg>
-      <figcaption><b>그림 17-1.</b> 작업실의 신호 흐름. 시계(<code>MB.Clock</code>)는 25 ms마다 깨어나 앞으로 120 ms 안에 올 16분음표를 오디오 시계 위에 <b>예약</b>한다(11·12장). 각 트랙은 자기 버스(볼륨 → 하이패스 EQ)를 가지며, 센드 양만큼 공유 리버브(컨볼버)로 보낸다. 모든 소리는 마스터 저역 통과 필터와 리미터를 지나 분석기와 스피커로 간다. 같은 그래프를 <code>OfflineAudioContext</code>에 다시 지으면 WAV로 렌더링된다.</figcaption>
+      <figcaption><b>그림 17-1.</b> 작업실의 신호 흐름. 시계(<code>MB.Clock</code>)는 25 ms마다 깨어나 앞으로 120 ms 안에 올 16분음표를 오디오 시계 위에 <b>예약</b>한다(11·12장). 각 트랙은 자기 버스(볼륨 → 하이패스 EQ)를 가지며, 센드 양만큼 공유 리버브(컨볼버)로 보낸다. 모든 소리는 마스터 저역 통과 필터와 리미터를 지나 분석기와 스피커로 간다. 내부 작업실 믹서 그래프를 <code>OfflineAudioContext</code>에 다시 지으면 WAV로 렌더링된다. 실시간 청취에는 그 뒤 MB.out의 마스터 이득(기본 0.8)·추가 컴프레서가 붙고 WAV에는 없으므로 스피커 출력과 파일의 음량을 직접 동일시하지 않는다.</figcaption>
     </figure>
     <p>시계가 왜 '앞을 내다보며 예약'해야 하는지는 12장에서 보았습니다. JavaScript 타이머는 수 ms에서 수십 ms까지 흔들리지만, <code>start(when)</code>으로 예약한 소리는 오디오 하드웨어 시계에 샘플 단위로 맞춰 울립니다. 16분음표 하나의 길이와 스윙 오프셋은 다음과 같습니다.</p>
-    <div class="formula">$$\Delta t_{16} = \frac{60}{\mathrm{BPM}\cdot 4}, \qquad t_{\text{swing}} = \begin{cases} (s - 0.5)\cdot 2\,\Delta t_{16} & \text{16분 스윙: 홀수 스텝} \\ (s - 0.5)\cdot 4\,\Delta t_{16} & \text{8분 스윙: 스텝} \equiv 2 \pmod 4 \end{cases}$$
+    <div class="formula">$$\Delta t_{16} = \frac{60}{\mathrm{BPM}\cdot 4}, \qquad t_{\text{swing}} = \begin{cases} (s - 0.5)\cdot 2\,\Delta t_{16} & \text{16분 스윙: 홀수 스텝} \\ (s - 0.5)\cdot 4\,\Delta t_{16} & \text{8분 스윙: 스텝} \equiv 2 \pmod 4 \\ (s - 0.5)\cdot 2\,\Delta t_{16} & \text{8분 스윙: 홀수 스텝} \end{cases}$$
       <div class="where">\(s\): 스윙 비율(0.5 = 정박, 0.667 = 셋잇단 셔플). 100 BPM에서 16분음표 = 150 ms. 스윙은 '짝'의 앞 음표가 차지하는 비율이다(11장). 블루스 셔플은 8분음표 단위로, 로파이·힙합은 16분음표 단위로 건다.</div>
+    <p>8분 스윙에서는 긴 앞 8분과 짧은 뒤 8분을 각각 같은 길이의 16분 두 개로 나눈다. 따라서 중간 16분 시작점도 함께 이동하고 서로 겹치지 않는다.</p>
     </div>
   </section>
 
@@ -99,10 +100,10 @@
     <h2>루프 스테이션</h2>
     <p>아래가 이 책의 마지막 대형 시뮬레이터입니다. 위에서 아래로 내려가며 곡을 쌓습니다. 각 층이 어떤 장의 개념인지 함께 적었습니다.</p>
     <ul>
-      <li><b>① 화성 층</b>: 조성(근음 + 음계)을 정하면 7개의 다이아토닉 화음이 생긴다(7·9장). 패드의 색은 화성 기능(초록 T, 주황 S, 빨강 D). 칸을 고른 뒤 패드를 눌러 진행을 채운다. 각 화음의 실제 보이싱은 앞 화음에서 성부 이동 합이 최소가 되도록 <code>MB.voiceLead</code>가 고른다(9장).</li>
+      <li><b>① 화성 층</b>: 조성(근음 + 음계)을 정하면 7개의 다이아토닉 화음이 생긴다(7·9장). 패드의 색은 화성 기능(초록 T, 주황 S, 빨강 D). 칸을 고른 뒤 패드를 눌러 진행을 채운다. 각 화음의 실제 보이싱은 앞 화음에서 성부 이동 합에 빠진 화음 음당 6·동일 MIDI 음 중복 8의 벌점을 더한 점수가 작아지도록(성부별 가까운 후보 네 개만 탐색) <code>MB.voiceLead</code>가 고른다(9장).</li>
       <li><b>② 리듬 층</b>: 6×16 스텝 그리드(12장). 템포와 스윙은 전체에 적용된다.</li>
       <li><b>③ 베이스 층</b>: 화음의 근음·5음·3음과 다음 화음의 근음으로 규칙적으로 생성한다. '워킹'은 마지막 박에 다음 근음으로 반음 접근한다.</li>
-      <li><b>④ 선율 층</b>: 시드 고정 난수로 만든 선율(13장). 강박(1·3박)에는 반드시 <b>화음 구성음</b>, 그 사이는 <b>순차 진행</b>(±1 음계 단계) 위주, 마지막 마디는 으뜸음으로 끝난다. 앞 두 마디의 리듬을 뒤 두 마디에 반복해 동기를 만든다. 피아노 롤을 눌러 직접 고칠 수 있다.</li>
+      <li><b>④ 선율 층</b>: 시드 고정 난수로 만든 선율(13장). 강박(1·3박)에는 음계 안에서 실제 반주 화음과 겹치는 음을 고른다(후보가 있을 때). 마지막 으뜸음 종지는 이 규칙의 예외다. 그 사이는 <b>순차 진행</b>(±1 음계 단계) 위주, 마지막 마디는 으뜸음으로 끝난다. 앞 두 마디의 리듬을 뒤 두 마디에 반복해 동기를 만든다. 피아노 롤을 눌러 직접 고칠 수 있다.</li>
       <li><b>⑤ 믹서 층</b>: 트랙별 악기·볼륨·리버브 센드·뮤트·솔로, 마스터 저역 통과 필터(15장).</li>
     </ul>
 
@@ -261,7 +262,7 @@
   <!-- =============================================================== 5 -->
   <section id="export">
     <h2>내보내기: 오프라인 렌더링과 WAV</h2>
-    <p>실시간 재생은 스피커 시계에 묶여 있지만, <code>OfflineAudioContext</code>는 같은 노드 그래프를 <b>가능한 한 빨리</b> 계산해 버퍼로 돌려줍니다. 작업실의 내보내기 버튼은 그림 17-1의 그래프를 오프라인 컨텍스트에 그대로 다시 짓고, 모든 스텝을 시각 계산으로 미리 예약한 뒤 렌더링합니다. 보통 실시간의 10–50배 속도입니다.</p>
+    <p>실시간 재생은 스피커 시계에 묶여 있지만, <code>OfflineAudioContext</code>는 같은 노드 그래프를 <b>가능한 한 빨리</b> 계산해 버퍼로 돌려줍니다. 작업실의 내보내기 버튼은 그림 17-1의 내부 작업실 믹서를 오프라인 컨텍스트에 다시 짓고(공통 청취용 MB.out의 이득·컴프레서는 제외), 모든 스텝을 시각 계산으로 미리 예약한 뒤 렌더링합니다. 보통 실시간의 10–50배 속도입니다.</p>
     <p>결과는 가장 단순한 무압축 형식인 WAV(RIFF)로 저장합니다. 44바이트 헤더 뒤에 16비트 정수 샘플을 채널 교대(LRLR…)로 늘어놓으면 끝입니다.</p>
     <div class="table-wrap"><table>
       <thead><tr><th class="num">오프셋</th><th>필드</th><th>값(이 작업실)</th></tr></thead>
@@ -449,7 +450,7 @@ const STD = (function () {
   }
   const leadBase = () => 60 + st.key - (st.key >= 7 ? 12 : 0);
   const leadMidi = (row) => MB.scaleNote(leadBase(), scaleSteps(), row);
-  const chordRows = (bar) => { const d = st.prog[MB.mod(bar, st.bars)], set = [0, 2, 4].concat(st.mode === "triad" ? [] : [6]).map((k) => MB.mod(d + k, 7)); return set; };
+  const chordRows = (bar) => { const pcs = chordAt(bar).pcs; return Array.from({ length: 14 }, (_, r) => r).filter((r) => pcs.includes(MB.mod(leadMidi(r), 12))); };
   /** 제약 기반 선율: 강박 = 화음 구성음, 그 사이 = 순차 위주, 마지막 마디 = 으뜸음 종지, 2마디 리듬 반복 */
   function genMelody() {
     const rnd = MB.rng(st.seed * 7919 + 13), n = st.bars * 16, mel = new Array(n).fill(-1), dens = st.density;
@@ -469,7 +470,7 @@ const STD = (function () {
         if (last && s === 8) { cur = Math.abs(cur - 7) <= Math.abs(cur - 0) + 2 ? 7 : 0; }
         else if (s % 8 === 0 || (s % 4 === 0 && rnd() < 0.5)) {
           let best = cur, bd = 99;
-          for (let r = 0; r <= 13; r++) if (ct.includes(r % 7)) { const d = Math.abs(r - cur) + rnd() * 0.9; if (d < bd) { bd = d; best = r; } }
+          for (let r = 0; r <= 13; r++) if (ct.includes(r)) { const d = Math.abs(r - cur) + rnd() * 0.9; if (d < bd) { bd = d; best = r; } }
           cur = best;
         } else {
           const dir = cur > 10 ? -1 : cur < 3 ? 1 : rnd() < 0.5 ? -1 : 1, u = rnd();
@@ -529,11 +530,18 @@ const STD = (function () {
   let live = null;
   function liveGraph() { const ctx = MB.ctx(); if (!live) live = makeGraph(ctx, MB.out, true); return live; }
   /* ---------- 스텝 하나 예약: s = 루프 안의 스텝, t = 정박 시각 */
+  // In eighth-note swing, subdivide each long/short eighth equally into two sixteenths.
+  function studioSwingOffset(step, base, swing, resolution) {
+    if (swing <= 0.5) return 0;
+    const phase = step % 4;
+    if (resolution === 8) return (swing - 0.5) * (phase === 2 ? 4 : phase % 2 ? 2 : 0) * base;
+    return step % 2 ? (swing - 0.5) * 2 * base : 0;
+  }
   const ALL = { drums: 1, bass: 1, chords: 1, lead: 1 };
   function schedule(g, s, t, mask = ALL) {
     const ctx = g.ctx, base = 60 / st.bpm / 4, stp = s % 16, bar = Math.floor(s / 16) % st.bars;
     let tt = t;
-    if (st.swing > 0.5) { if (+st.swingRes === 8 ? stp % 4 === 2 : stp % 2 === 1) tt += (st.swing - 0.5) * (+st.swingRes === 8 ? 4 : 2) * base; }
+    tt += studioSwingOffset(stp, base, st.swing, +st.swingRes);
     const V = voicings()[bar];
     const play = (m, tr, dur, vel) => MB.play(m, { ctx, inst: st.tracks[tr].inst, when: tt, dur, vel, dest: g.tr[tr].in });
     if (mask.drums) DROWS.forEach((r) => {
@@ -687,7 +695,7 @@ const STD = (function () {
     const P = MB.palette(), n = st.bars * 16, x0 = 34;
     for (let b = 0; b < st.bars; b++) {
       const ct = STD.chordRows(b);
-      for (let r = 0; r < ROWS; r++) if (ct.includes(r % 7)) { ctx.fillStyle = P.accent + "14"; ctx.fillRect(x0 + b * 16 * CW, HDR + (ROWS - 1 - r) * RH, 16 * CW, RH); }
+      for (let r = 0; r < ROWS; r++) if (ct.includes(r)) { ctx.fillStyle = P.accent + "14"; ctx.fillRect(x0 + b * 16 * CW, HDR + (ROWS - 1 - r) * RH, 16 * CW, RH); }
       ctx.fillStyle = b === curBar ? P.accent : P.dim; ctx.font = DSP_font(11); ctx.textAlign = "left";
       ctx.fillText(`${b + 1} ${STD.chordAt(b).sym}`, x0 + b * 16 * CW + 4, 13);
     }
