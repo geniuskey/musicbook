@@ -515,3 +515,8 @@ td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numer
 .sim-msg { font-size: 14px; }
 .big-readout { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); }
 @media (max-width: 520px) { .mb-kb { height: 108px; } .steps-grid .row { grid-template-columns: 58px 1fr; } }
+
+/* Shareable simulator anchor links */
+.sim-link { margin-left: auto; flex: 0 0 auto; font: 12px var(--mono); color: var(--text-faint); }
+.sim-link:hover, .sim-link:focus-visible { color: var(--accent); text-decoration: none; }
+.sim { scroll-margin-top: 1rem; }
